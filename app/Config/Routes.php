@@ -14,6 +14,7 @@ $routes->get('/produk', 'ProdukController::indexTable');
 $routes->get('/produk-gallery-view', 'ProdukController::indexGallery');
 $routes->get('/produk-add', 'ProdukController::insert');
 
+
 $routes->get('/transaksi', 'TransaksiController::index');
 
 // Bahan Baku
