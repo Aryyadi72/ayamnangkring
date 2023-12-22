@@ -6,14 +6,18 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+// Auth
 $routes->get('/login', 'LoginController::index');
 $routes->get('/forgot-password', 'LoginController::forgotPassword');
 $routes->get('/dashboard', 'DashboardController::index');
+
 // Produk
 $routes->get('/produk', 'ProdukController::indexTable');
 $routes->get('/produk-gallery-view', 'ProdukController::indexGallery');
 $routes->get('/produk-add', 'ProdukController::insert');
 
+// Users
+$routes->get('/users', 'UsersController::index');
 
 $routes->get('/transaksi', 'TransaksiController::index');
 

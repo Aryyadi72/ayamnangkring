@@ -40,7 +40,7 @@ class CreateTransactionsTable extends Migration
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',
             ],
-             'created_at' => [
+            'created_at' => [
                 'type' => 'DATETIME',
             ],
             'updated_at' => [

@@ -35,14 +35,16 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>List Employee</h5>
+                        <h5>List Users</h5>
                     </div>
                     <div class="card-body">
-                    <table id="employees" class="table table-striped" style="width:100%">
+                    <table id="users" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Code</th>
+                                <th>Email</th>
+                                <th>Username</th>
                                 <th>Nama</th>
                                 <th>TTL</th>
                                 <th>Gender</th>
@@ -53,15 +55,17 @@
                         <tbody>
                             <?php 
                                 $no = 1;
-                                foreach ($data['employees'] as $emp):
+                                foreach ($data['users'] as $users):
                             ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $emp['code'] ?></td>
-                                <td><?= $emp['name'] ?></td>
-                                <td><?= $emp['birth_place'] ?>, <?= \Carbon\Carbon::parse($emp['birth_date'])->format('d-m-Y') ?></td>
-                                <td><?= $emp['gender'] ?></td>
-                                <td><?= $emp['position'] ?></td>
+                                <td><?= $users['code'] ?></td>
+                                <td><?= $users['email'] ?></td>
+                                <td><?= $users['username'] ?></td>
+                                <td><?= $users['name'] ?></td>
+                                <td><?= $users['birth_place'] ?>, <?= \Carbon\Carbon::parse($users['birth_date'])->format('d-m-Y') ?></td>
+                                <td><?= $users['gender'] ?></td>
+                                <td><?= $users['position'] ?></td>
                                 <td>
                                     <a href="" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ti ti-pencil"></i></a>
                                     <a href="" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ti ti-trash"></i></a>
@@ -79,6 +83,6 @@
     </div>
 </div>
 <!-- [ Main Content ] end -->
-<script>$('#employees').DataTable();</script>
+<script>$('#users').DataTable();</script>
 
 <?= $this->endSection();?>

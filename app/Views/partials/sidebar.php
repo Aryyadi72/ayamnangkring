@@ -28,8 +28,8 @@
                     </ul>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/login') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-logout"></i></span><span
-                        class="pc-mtext">Logout</span></a>
+                    <a href="<?= base_url('/users') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-user"></i></span><span
+                        class="pc-mtext">Master Users</span></a>
                 </li>
                 <!-- Dashboard End -->
 
@@ -103,12 +103,18 @@
                         class="pc-mtext">Upgrade</span></a>
                 </li>
                 <!-- Maintenance End -->
+
+                <!-- Users -->
+                <li class="pc-item pc-caption">
+                    <label>Logout</label>
+                    <i class="ti ti-settings"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('/login') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-logout"></i></span><span
+                        class="pc-mtext">Logout</span></a>
+                </li>
+                <!-- Users End -->
             </ul>
-            <div class="pc-navbar-card bg-primary rounded">
-                <h4 class="text-white">Berry Pro</h4>
-                <p class="text-white opacity-75">Checkout Berry pro features</p>
-                <a href="https://codedthemes.com/item/berry-bootstrap-5-admin-template/" class="btn btn-light text-primary">Pro</a>
-            </div>
         </div>
     </div>
 </nav>

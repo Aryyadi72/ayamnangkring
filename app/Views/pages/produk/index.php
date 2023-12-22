@@ -43,19 +43,29 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Jumlah</th>
                                 <th>Harga</th>
                                 <th>Foto</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                                $no = 1;
+                                foreach ($data['products'] as $products):
+                            ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $no++ ?></td>
+                                <td><?= $products['name'] ?></td>
+                                <td><?= $products['qty'] ?></td>
+                                <td><?= $products['price'] ?></td>
+                                <td><?= $products['image'] ?></td>
+                                <td>
+                                    <a href="" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ti ti-pencil"></i></a>
+                                    <a href="" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ti ti-trash"></i></a>
+                                </td>
                             </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                     </div>
