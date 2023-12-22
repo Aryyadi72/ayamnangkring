@@ -80,3 +80,10 @@ $routes->group('bahan-penunjang', function ($routes) {
     $routes->get('delete/(:num)', 'BahanPenunjangController::delete/$1');
 });
 
+$routes->group('customers', function ($routes) {
+    $routes->get('/', 'CustomersController::index');
+    $routes->post('store', 'CustomersController::store');
+    $routes->get('edit/(:num)', 'CustomersController::edit/$1');
+    $routes->post('update/(:num)', 'CustomersController::update/$1');
+    $routes->get('delete/(:num)', 'CustomersController::delete/$1');
+});

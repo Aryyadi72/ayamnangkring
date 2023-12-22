@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProdukModel extends Model
+class CustomersModel extends Model
 {
-    protected $table            = 'products';
+    protected $table            = 'customers';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'qty', 'price', 'image', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['name', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,9 +24,6 @@ class ProdukModel extends Model
     // Validation
     protected $validationRules      = [
         'name'     => 'required|string',
-        'qty'      => 'required|integer',
-        'price'    => 'required|numeric',
-        'image'    => 'required|string',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -42,5 +39,4 @@ class ProdukModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
 }
