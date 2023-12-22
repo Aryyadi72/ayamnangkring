@@ -41,8 +41,8 @@ class TransaksiController extends BaseController
             'total_price'            => $this->request->getPost('total_price'),
             'receive_price_discount' => $this->request->getPost('receive_price_discount'),
             'down_payment'           => $this->request->getPost('down_payment'),
-            'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d'),
+            'created_at'             => date('Y-m-d'),
+            'updated_at'             => date('Y-m-d'),
         ];
 
         $result = $transaksiModel->insert($dataToAdd);
@@ -80,8 +80,8 @@ public function update($id)
             'total_price'            => $this->request->getPost('total_price'),
             'receive_price_discount' => $this->request->getPost('receive_price_discount'),
             'down_payment'           => $this->request->getPost('down_payment'),
-            'updated_at' => date('Y-m-d'),
-        ];
+            'updated_at'             => date('Y-m-d'),
+            ];
 
         $result = $transaksiModel->update($id, $dataToUpdate);
 
