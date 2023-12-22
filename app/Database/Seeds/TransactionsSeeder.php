@@ -17,7 +17,6 @@ class TransactionsSeeder extends Seeder
     {
         $data = [];
 
-        // Assuming there are at least 5 products in the 'products' table
         $productsCount = $this->db->table('products')->countAllResults();
         if ($productsCount < 5) {
             throw new \RuntimeException('Not enough products in the database. Run the ProductsSeeder first.');
@@ -26,7 +25,7 @@ class TransactionsSeeder extends Seeder
         for ($i = 1; $i <= 5; $i++) {
             $productId = rand(1, $productsCount);
             $service = 'Service ' . $i;
-            $status = 'Completed'; // You can adjust the status as needed
+            $status = 'Completed';
             $totalPrice = number_format(rand(500, 2000) / 100, 2);
             $receivePriceDiscount = number_format(rand(100, 500) / 100, 2);
             $downPayment = number_format(rand(50, 200) / 100, 2);

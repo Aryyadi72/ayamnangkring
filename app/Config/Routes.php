@@ -64,3 +64,19 @@ $routes->group('transaksi', function ($routes) {
     $routes->get('delete/(:num)', 'TransaksiController::delete/$1');
 });
 
+$routes->group('alat-produksi', function ($routes) {
+    $routes->get('/', 'AlatProduksiController::index');
+    $routes->get('create', 'AlatProduksiController::create');
+    $routes->post('store', 'AlatProduksiController::store');
+    $routes->post('update/(:num)', 'AlatProduksiController::update/$1');
+    $routes->get('delete/(:num)', 'AlatProduksiController::delete/$1');
+});
+
+$routes->group('bahan-penunjang', function ($routes) {
+    $routes->get('/', 'BahanPenunjangController::index');
+    $routes->get('create', 'BahanPenunjangController::create');
+    $routes->post('store', 'BahanPenunjangController::store');
+    $routes->post('update/(:num)', 'BahanPenunjangController::update/$1');
+    $routes->get('delete/(:num)', 'BahanPenunjangController::delete/$1');
+});
+

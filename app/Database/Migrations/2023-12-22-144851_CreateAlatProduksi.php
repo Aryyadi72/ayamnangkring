@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateProductsTable extends Migration
+class CreateAlatProduksi extends Migration
 {
     public function up()
     {
@@ -15,22 +15,30 @@ class CreateProductsTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'name' => [
+            'nama' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-            ],
-            'qty' => [
-                'type' => 'INT',
-                'constraint' => 5,
-            ],
-            'price' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
             ],
             'image' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
+            ],
+            'qty' => [
+                'type' => 'INT',
+                'constraint' => 5,
+            ],
+            'satuan' => [
+                'type' => 'ENUM',
+                'constraint' => ['PCS','UNIT','BUAH'],
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['LAYAK PAKAI', 'TIDAK LAYAK', 'RUSAK'],
+            ],
+            'harga' => [
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
             ],
             'created_at' => [
                 'type' => 'DATE',
@@ -41,11 +49,12 @@ class CreateProductsTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('products');
+        $this->forge->createTable('alat_produksi');
+    
     }
 
     public function down()
     {
-        $this->forge->dropTable('products');
+        $this->forge->dropTable('alat_produksi');
     }
 }
