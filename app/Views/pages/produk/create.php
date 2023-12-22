@@ -32,22 +32,37 @@
                         <h5>List Produk</h5>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nama Produk</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <?= form_open_multipart('/produk/store') ?>
+    <div class="mb-3">
+        <label for="productName" class="form-label">Nama Produk</label>
+        <input type="text" class="form-control" id="productName" name="name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="productQty" class="form-label">Jumlah Produk</label>
+        <input type="number" class="form-control" id="productQty" name="qty">
+    </div>
+    <div class="mb-3">
+        <label for="productPrice" class="form-label">Harga Produk</label>
+        <input type="number" class="form-control" id="productPrice" name="price">
+    </div>
+    <div class="mb-3">
+        <label for="productImage" class="form-label">Foto Produk</label>
+        <input class="form-control" type="file" id="productImage" name="image" accept="image/*">
+    </div>
+    <!-- <div class="mb-3">
+        <label for="productImage" class="form-label">Created_at</label>
+        <input class="form-control" type="date" id="productImage" name="created_at">
+    </div>
+    <div class="mb-3">
+        <label for="productImage" class="form-label">Updated_at</label>
+        <input class="form-control" type="date" id="productImage" name="updated_at">
+    </div> -->
+
+    <a href="<?= base_url('/produk/produk-table') ?>" class="btn btn-dark">Kembali</a>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Harga Produk</label>
-                                <input type="number" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Foto Produk</label>
-                                <input class="form-control" type="file" id="formFile">
-                            </div>
-                            <a href="<?= base_url('/produk') ?>" class="btn btn-dark">Kembali</a>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
-                        </form>
                     </div>
                 </div>
             </div>

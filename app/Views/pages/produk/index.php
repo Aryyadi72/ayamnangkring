@@ -21,11 +21,12 @@
                     </div>
                 </div>
             </div>
-            <div class="justify-content-end">
-                <a href="<?= base_url('/produk-add') ?>" class="btn btn-sm btn-primary">
-                    <i class="ti ti-plus"></i>Tambah
-                </a>
-            </div>
+           <div class="justify-content-end">
+    <a href="<?= base_url('/produk/create') ?>" class="btn btn-sm btn-primary">
+        <i class="ti ti-plus"></i>Tambah
+    </a>
+</div>
+
         </div>
         <!-- [ breadcrumb ] end -->
 
@@ -35,7 +36,20 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>List Produk</h5>
+                        <h5>List Produk</h5>    
+                        <?php if (session()->has('success')) : ?>
+    <div class="alert alert-success">
+        <?= session('success') ?>
+    </div>
+<?php elseif (session()->has('errors')) : ?>
+    <div class="alert alert-danger">
+        <ul>
+            <?php foreach (session('errors') as $error) : ?>
+                <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
                     </div>
                     <div class="card-body">
                     <table id="produk" class="table table-striped" style="width:100%">

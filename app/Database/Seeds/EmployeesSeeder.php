@@ -40,8 +40,8 @@ class EmployeesSeeder extends Seeder
                 'birth_date' => $birthDate,
                 'gender' => $gender,
                 'position' => $position,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d'),
+                'updated_at' => date('Y-m-d'),
             ];
         }
 

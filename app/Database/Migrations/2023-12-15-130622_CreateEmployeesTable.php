@@ -9,7 +9,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'employee_id' => [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -44,15 +44,15 @@ class CreateEmployeesTable extends Migration
                 'constraint' => 100,
             ],
             'created_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
             'updated_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
         ]);
 
-        $this->forge->addKey('employee_id', true);
-        $this->forge->addForeignKey('users_id', 'users', 'users_id');
+        $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('users_id', 'users', 'id');
         $this->forge->createTable('employees', true);
         $this->db->disableForeignKeyChecks();
     }

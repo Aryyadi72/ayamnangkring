@@ -9,7 +9,7 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'customers_id' => [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -20,14 +20,14 @@ class CreateCustomersTable extends Migration
                 'constraint' => 255,
             ],
              'created_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
             'updated_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
         ]);
 
-        $this->forge->addKey('customers_id', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('customers');
     }
 

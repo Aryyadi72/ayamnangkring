@@ -38,8 +38,8 @@ class TransactionsSeeder extends Seeder
                 'total_price' => $totalPrice,
                 'receive_price_discount' => $receivePriceDiscount,
                 'down_payment' => $downPayment,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d'),
+                'updated_at' => date('Y-m-d'),
             ];
         }
 

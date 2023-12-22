@@ -3,16 +3,16 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\Users;
+use App\Models\UsersModel;
 
 class UsersController extends BaseController
 {
+    protected $filters = ['auth'];
+
+    protected $helpers = ['form'];
+    
     public function index()
     {
-        $usersModel =  new Users;
-        $data['users'] = $usersModel->getUsersEmployees();
-        $title ['title'] = "Users - Page";
-        return view ('/pages/users/index', ['title' => $title, 'data' => $data]);
+        //
     }
-
 }

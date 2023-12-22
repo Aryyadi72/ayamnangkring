@@ -9,7 +9,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'users_id' => [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -30,14 +30,14 @@ class CreateUsersTable extends Migration
                 'constraint' => 255,
             ],
             'created_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
             'updated_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
         ]);
 
-        $this->forge->addKey('users_id', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('users', true);
         $this->db->disableForeignKeyChecks();
     }

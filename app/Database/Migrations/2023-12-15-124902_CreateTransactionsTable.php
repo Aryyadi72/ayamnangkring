@@ -9,7 +9,7 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'transactions_id' => [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -40,16 +40,16 @@ class CreateTransactionsTable extends Migration
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',
             ],
-            'created_at' => [
-                'type' => 'DATETIME',
+             'created_at' => [
+                'type' => 'DATE',
             ],
             'updated_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
         ]);
 
-        $this->forge->addKey('transactions_id', true);
-        $this->forge->addForeignKey('products_id', 'products', 'products_id'); // Assuming a foreign key relationship with the products table
+        $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('products_id', 'products', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('transactions');
     }
 
