@@ -23,8 +23,8 @@
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-meat"></i></span><span
                         class="pc-mtext">Produk</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk') ?>">Table View</a></li>
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk-gallery-view') ?>">Gallery View</a></li>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-table') ?>">Table View</a></li>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-gallery') ?>">Gallery View</a></li>
                     </ul>
                 </li>
                 <li class="pc-item">

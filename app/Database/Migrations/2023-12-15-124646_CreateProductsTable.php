@@ -9,7 +9,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'products_id' => [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -33,14 +33,14 @@ class CreateProductsTable extends Migration
                 'null' => true,
             ],
              'created_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
             'updated_at' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
             ],
         ]);
 
-        $this->forge->addKey('products_id', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('products');
     }
 
