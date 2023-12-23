@@ -13,5 +13,7 @@ class DataSeeder extends Seeder
         $this->call('EmployeesSeeder');
         $this->call('ProductsSeeder');
         $this->call('TransactionsSeeder');
+        $this->call('BahanPenunjangSeeder');
+        $this->call('AlatProduksiSeeder');
     }
 }

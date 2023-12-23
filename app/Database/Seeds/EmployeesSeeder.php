@@ -17,7 +17,6 @@ class EmployeesSeeder extends Seeder
     {
         $data = [];
 
-        // Assuming there are at least 5 users in the 'users' table
         $usersCount = $this->db->table('users')->countAllResults();
         if ($usersCount < 5) {
             throw new \RuntimeException('Not enough users in the database. Run the UsersSeeder first.');
