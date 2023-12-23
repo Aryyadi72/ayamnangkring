@@ -34,5 +34,5 @@ class CreateCustomersTable extends Migration
     public function down()
     {
         $this->forge->dropTable('customers');
-    }
+    } 
 }
