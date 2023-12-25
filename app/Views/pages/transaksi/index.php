@@ -1,6 +1,6 @@
 <?= $this->extend('layout/main-layout'); ?>
 
-<?= $this->section('content');?>
+<?= $this->section('content'); ?>
 
 <!-- [ Main Content ] start -->
 <div class="pc-container">
@@ -38,11 +38,13 @@
                         <h5>Hello card</h5>
                     </div>
                     <div class="card-body">
-                        <p
-                        >"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis
+                            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         </p>
                     </div>
                 </div>
@@ -60,34 +62,62 @@
                         <h5>List Transaksi</h5>
                     </div>
                     <div class="card-body">
-                    <table id="transaksi" class="table table-striped" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>ID Transkasi</th>
-                                <th>Customer</th>
-                                <th>Tanggal</th>
-                                <th>Qty date</th>
-                                <th>Total Harga</th>
-                                <th>Sisa Harga</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table id="transaksi" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID Transkasi</th>
+                                    <!-- <th>Customer</th> -->
+                                    <th>Tanggal</th>
+                                    <!-- <th>Qty</th> -->
+                                    <th>Total Harga</th>
+                                    <th>Sisa Harga</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($transaksi['transaksi'] as $transaksi):
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= $no++ ?>
+                                        </td>
+                                        <td>
+                                            <?= $transaksi['id'] ?>
+                                        </td>
+                                        <!-- <td>
+                                            
+                                        </td> -->
+                                        <td>
+                                            <?= $transaksi['created_at'] ?>
+                                        </td>
+                                        <!-- <td>
+                                            
+                                        </td> -->
+                                        <td>
+                                            <?= $transaksi['total_price'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $transaksi['receive_price_discount'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $transaksi['status'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-warning">
+                                                <i class="ti ti-pencil"></i>
+                                            </a>
+                                            <a href="" class="btn btn-danger">
+                                                <i class="ti ti-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -99,4 +129,4 @@
 <!-- [ Main Content ] end -->
 <script>$('#transaksi').DataTable();</script>
 
-<?= $this->endSection();?>
+<?= $this->endSection(); ?>
