@@ -15,9 +15,8 @@ class TransaksiController extends BaseController
     {
         $title['title'] = "Data Transaki - Transaksi";
         $transaksiModel = new TransactionsModel();
-        $transaksi = $transaksiModel->getTransaction();
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Transaksi Berhasil Ditampilkan!', 'data' => $transaksi]);
-        return view ('/pages/transaksi/index', $title);
+        $transaksi['transaksi'] = $transaksiModel->getTransaction();
+        return view ('/pages/transaksi/index', ['title' => $title, 'transaksi' => $transaksi]);
     }
 
     public function store()

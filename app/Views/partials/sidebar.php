@@ -80,7 +80,7 @@
                     <i class="ti ti-users"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/data-karyawan') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-users"></i></span><span
+                    <a href="<?= base_url('/employees') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-users"></i></span><span
                         class="pc-mtext">Data Karyawan</span></a>
                 </li>
                 <li class="pc-item">

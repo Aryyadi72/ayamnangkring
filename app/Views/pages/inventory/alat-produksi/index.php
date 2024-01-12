@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="justify-content-end">
-                <a href="<?= base_url('/data-karyawan-add') ?>" class="btn btn-primary btn-sm">
+                <a href="<?= base_url('/alat-produksi/create') ?>" class="btn btn-primary btn-sm">
                     <i class="ti ti-plus"></i>Tambah
                 </a>
             </div>
@@ -35,36 +35,38 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>List Employee</h5>
+                        <h5>Alat Produksi</h5>
                     </div>
                     <div class="card-body">
-                    <table id="employees" class="table table-striped" style="width:100%">
+                    <table id="transaksi" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Code</th>
-                                <th>Nama</th>
-                                <th>TTL</th>
-                                <th>Gender</th>
-                                <th>Jabatan</th>
+                                <th>Gambar</th>
+                                <th>Alat</th>
+                                <th>Tanggal</th>
+                                <th>Qty</th>
+                                <th>Satuan</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                                $no = 1;
-                                foreach ($data['employees'] as $emp):
+                            <?php
+                            $no = 1;
+                            foreach ($alatProduksi['alat'] as $alat) :
                             ?>
                             <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= $emp['code'] ?></td>
-                                <td><?= $emp['name'] ?></td>
-                                <td><?= $emp['birth_place'] ?>, <?= \Carbon\Carbon::parse($emp['birth_date'])->format('d-m-Y') ?></td>
-                                <td><?= $emp['gender'] ?></td>
-                                <td><?= $emp['position'] ?></td>
+                                <td><?= $no ++ ?></td>
+                                <td><?= $alat['image'] ?></td>
+                                <td><?= $alat['nama'] ?></td>
+                                <td><?= \Carbon\Carbon::parse($alat['created_at'])->format('d-m-Y') ?></td>
+                                <td><?= $alat['qty'] ?></td>
+                                <td><?= $alat['satuan'] ?></td>
+                                <td><?= $alat['status'] ?></td>
                                 <td>
-                                    <a href="" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ti ti-pencil"></i></a>
-                                    <a href="" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ti ti-trash"></i></a>
+                                    <a href="<?= base_url('/alat-produksi/edit/'.$alat['id']) ?>" class="btn btn-warning"><i class="ti ti-pencil"></i></a>
+                                    <a href="<?= base_url('/alat-produksi/delete/'.$alat['id']) ?>" class="btn btn-danger"><i class="ti ti-trash"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach ?>
@@ -79,6 +81,6 @@
     </div>
 </div>
 <!-- [ Main Content ] end -->
-<script>$('#employees').DataTable();</script>
+<script>$('#transaksi').DataTable();</script>
 
 <?= $this->endSection();?>

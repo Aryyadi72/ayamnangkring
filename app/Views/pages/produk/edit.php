@@ -29,31 +29,28 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Tambah Alat Produksi</h5>
+                        <h5>List Produk</h5>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <?= form_open_multipart('/produk/update/'.$data['product']['id']) ?>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Alat</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="productName" class="form-label">Nama Produk</label>
+                                <input type="text" class="form-control" id="productName" name="name" aria-describedby="emailHelp" value="<?= $data['product']['name'] ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="productQty" class="form-label">Jumlah Produk</label>
+                                <input type="number" class="form-control" id="productQty" name="qty" value="<?= $data['product']['qty'] ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Qty</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="productPrice" class="form-label">Harga Produk</label>
+                                <input type="number" class="form-control" id="productPrice" name="price" value="<?= $data['product']['price'] ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Total per Item</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="productImage" class="form-label">Foto Produk</label>
+                                <input class="form-control" type="file" id="productImage" name="image" accept="image/*">
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Total Keseluruhan</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                            <a href="<?= base_url('/alat-produksi') ?>" class="btn btn-dark">Kembali</a>
+
+                            <a href="<?= base_url('/produk/produk-table') ?>" class="btn btn-dark">Kembali</a>
                             <button type="submit" class="btn btn-secondary">Submit</button>
                         </form>
                     </div>

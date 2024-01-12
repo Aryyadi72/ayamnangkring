@@ -21,11 +21,11 @@
                     </div>
                 </div>
             </div>
-           <div class="justify-content-end">
-    <a href="<?= base_url('/produk/create') ?>" class="btn btn-sm btn-primary">
-        <i class="ti ti-plus"></i>Tambah
-    </a>
-</div>
+            <div class="justify-content-end">
+                <a href="<?= base_url('/produk/create') ?>" class="btn btn-sm btn-primary">
+                    <i class="ti ti-plus"></i>Tambah
+                </a>
+            </div>
 
         </div>
         <!-- [ breadcrumb ] end -->
@@ -37,19 +37,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>List Produk</h5>    
-                        <?php if (session()->has('success')) : ?>
-    <div class="alert alert-success">
-        <?= session('success') ?>
-    </div>
-<?php elseif (session()->has('errors')) : ?>
-    <div class="alert alert-danger">
-        <ul>
-            <?php foreach (session('errors') as $error) : ?>
-                <li><?= $error ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
                     </div>
                     <div class="card-body">
                     <table id="produk" class="table table-striped" style="width:100%">
@@ -66,17 +53,17 @@
                         <tbody>
                             <?php
                                 $no = 1;
-                                foreach ($data['products'] as $products):
+                                foreach ($produk['produk'] as $produk):
                             ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $products['name'] ?></td>
-                                <td><?= $products['qty'] ?></td>
-                                <td><?= $products['price'] ?></td>
-                                <td><?= $products['image'] ?></td>
+                                <td><?= $produk['name'] ?></td>
+                                <td><?= $produk['qty'] ?></td>
+                                <td><?= $produk['price'] ?></td>
+                                <td><?= $produk['image'] ?></td>
                                 <td>
-                                    <a href="" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ti ti-pencil"></i></a>
-                                    <a href="" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ti ti-trash"></i></a>
+                                    <a href="<?= base_url('/produk/edit/' . $produk['id']) ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ti ti-pencil"></i></a>
+                                    <a href="<?= base_url('/produk/delete/' . $produk['id']) ?>" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ti ti-trash"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach ?>

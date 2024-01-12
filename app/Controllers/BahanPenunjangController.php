@@ -7,20 +7,22 @@ use App\Models\BahanPenunjangModel;
 
 class BahanPenunjangController extends BaseController
 {
+    protected $filters = ['auth'];
+
+    protected $helpers = ['form'];
+
     public function index()
     {
         $title['title'] = "Data Bahan Penunjang - Bahan Penunjang";
         $bahanPenunjangModel = new BahanPenunjangModel;
-        $bahanPenunjang = $bahanPenunjangModel->findAll();
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Bahan Penunjang Berhasil Ditampilkan!', 'data' => $bahanPenunjang]);
+        $bahanPenunjang['bahan'] = $bahanPenunjangModel->findAll();
+        return view ('pages/inventory/bahan-penunjang/index', ['title' => $title, 'bahanPenunjang' => $bahanPenunjang]);
     }
 
     public function create()
     {
         $title['title'] = "Data Bahan Penunjang - Bahan Penunjang";
-        $bahanPenunjangModel = new BahanPenunjangModel;
-        $bahanPenunjang = $bahanPenunjangModel->findAll();
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Bahan Penunjang Berhasil Ditampilkan!', 'data' => $bahanPenunjang]);
+        return view ('pages/inventory/bahan-penunjang/create', ['title' => $title]);
     }
 
     public function store()
@@ -51,14 +53,15 @@ class BahanPenunjangController extends BaseController
             $result = $bahanPenunjangModel->insert($dataToAdd);
 
             if ($result) {
-                session()->setFlashdata("success", "Berhasil disimpan!");
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Berhasil disimpan!', 'data' => $dataToAdd]);
-            } else {
-                session()->setFlashdata("error", "Data gagal ditambahkan.");
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal ditambahkan.']);
+                session()->setFlashdata("success", "Data Berhasil Ditambahkan!!!");
+                return redirect()->to(base_url('/bahan-penunjang'));
+            } else {    
+                session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+                return redirect()->back();
             }
         } else {
-            return $this->response->setJSON(['status' => 'validation_error', 'errors' => $this->validator->getErrors()]);
+            session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+            return redirect()->back();
         }
     }
 
@@ -95,14 +98,15 @@ class BahanPenunjangController extends BaseController
             $result = $bahanPenunjangModel->update($id, $dataToUpdate);
 
             if ($result) {
-                session()->setFlashdata("success", "Berhasil diupdate!");
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Berhasil diupdate!', 'data' => $dataToUpdate]);
-            } else {
-                session()->setFlashdata("error", "Data gagal diupdate.");
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal diupdate.']);
+                session()->setFlashdata("success", "Data Berhasil Ditambahkan!!!");
+                return redirect()->to(base_url('/bahan-penunjang'));
+            } else {    
+                session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+                return redirect()->back();
             }
         } else {
-            return $this->response->setJSON(['status' => 'validation_error', 'errors' => $this->validator->getErrors()]);
+            session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+            return redirect()->back();
         }
     }
 
@@ -120,10 +124,10 @@ class BahanPenunjangController extends BaseController
 
         if ($result) {
             session()->setFlashdata("success", "Berhasil dihapus!");
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Data berhasil dihapus']);
+            return redirect()->back();
         } else {
             session()->setFlashdata("error", "Data gagal dihapus.");
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal dihapus']);
+            return redirect()->back();
         }
     }
 

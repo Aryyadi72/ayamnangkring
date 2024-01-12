@@ -44,6 +44,7 @@
                                 <th>No</th>
                                 <th>ID Transkasi</th>
                                 <th>Customer</th>
+                                <th>Menu</th>
                                 <th>Qty</th>
                                 <th>Total Harga</th>
                                 <th>Sisa Harga</th>
@@ -54,18 +55,19 @@
                         <tbody>
                             <?php 
                                 $no = 1;
-                                foreach ($data['transactions'] as $transactions):
+                                foreach ($transaksi['transaksi'] as $transaksi):
                             ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $transactions['transactions_id'] ?></td>
-                                <td><?= $transactions['customer'] ?></td>
-                                <td><?= $transactions['qty'] ?></td>
-                                <td><?= $transactions['total_price'] ?></td>
-                                <td><?= $transactions['down_payment'] ?></td>
+                                <td><?= $transaksi['id'] ?></td>
+                                <td><?= $transaksi['customer_name'] ?></td>
+                                <td><?= $transaksi['product_name'] ?></td>
+                                <td><?= $transaksi['qty'] ?></td>
+                                <td><?= $transaksi['total_price'] ?></td>
+                                <td><?= $transaksi['down_payment'] ?></td>
                                 <td>
                                     <?php
-                                    $status = $transactions['status'];
+                                    $status = $transaksi['status'];
 
                                     switch ($status) {
                                         case 'Down Payment':

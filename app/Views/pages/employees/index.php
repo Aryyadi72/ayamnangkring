@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="justify-content-end">
-                <a href="<?= base_url('/alat-produksi-add') ?>" class="btn btn-primary btn-sm">
+                <a href="<?= base_url('/employees/create') ?>" class="btn btn-primary btn-sm">
                     <i class="ti ti-plus"></i>Tambah
                 </a>
             </div>
@@ -35,53 +35,39 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Hello card</h5>
+                        <h5>List Employee</h5>
                     </div>
                     <div class="card-body">
-                        <p
-                        >"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- [ sample-page ] end -->
-        </div>
-        <!-- [ Main Content ] end -->
-
-        <!-- [ Main Content ] start -->
-        <div class="row">
-            <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Alat Produksi</h5>
-                    </div>
-                    <div class="card-body">
-                    <table id="transaksi" class="table table-striped" style="width:100%">
+                    <table id="employees" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Alat</th>
-                                <th>Tanggal</th>
-                                <th>Qty</th>
-                                <th>Total per Item</th>
-                                <th>Total Keseluruhan</th>
+                                <th>Code</th>
+                                <th>Nama</th>
+                                <th>TTL</th>
+                                <th>Gender</th>
+                                <th>Jabatan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                                $no = 1;
+                                foreach ($sdm['employees'] as $emp):
+                            ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $no++ ?></td>
+                                <td><?= $emp['code'] ?></td>
+                                <td><?= $emp['name'] ?></td>
+                                <td><?= $emp['birth_place'] ?>, <?= \Carbon\Carbon::parse($emp['birth_date'])->format('d-m-Y') ?></td>
+                                <td><?= $emp['gender'] ?></td>
+                                <td><?= $emp['position'] ?></td>
+                                <td>
+                                    <a href="<?= base_url('/employees/update/'.$emp['id']) ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ti ti-pencil"></i></a>
+                                    <a href="<?= base_url('/employees/delete/'.$emp['id']) ?>" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ti ti-trash"></i></a>
+                                </td>
                             </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                     </div>
@@ -93,6 +79,6 @@
     </div>
 </div>
 <!-- [ Main Content ] end -->
-<script>$('#transaksi').DataTable();</script>
+<script>$('#employees').DataTable();</script>
 
 <?= $this->endSection();?>
