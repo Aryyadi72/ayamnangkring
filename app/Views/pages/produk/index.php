@@ -57,19 +57,23 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Kategori</th>
                                 <th>Harga</th>
                                 <th>Foto</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($produk as $index => $data) : ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= $data['name'] ?></td>
+                                <td><?= $data['category'] ?></td>
+                                <td><?= $data['price'] ?></td>
+                                <td><?= $data['image'] ?></td>
                                 <td></td>
                             </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     </div>

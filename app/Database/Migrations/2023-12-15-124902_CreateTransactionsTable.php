@@ -6,7 +6,7 @@ use CodeIgniter\Database\Migration;
 
 class CreateTransactionsTable extends Migration
 {
-    public function up()
+      public function up()
     {
         $this->forge->addField([
             'id' => [
@@ -15,53 +15,57 @@ class CreateTransactionsTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'products_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
-            ],
-            'customers_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
-            ],
-            'qty' => [
-                'type' => 'INT',
-                'constraint' => 5,
-            ],
-            'service' => [
+            'customers' => [
                 'type' => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => 500,
+                'null' => true,
             ],
             'status' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
+                'null' => true,
             ],
             'total_price' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => true,
             ],
-            'receive_price_discount' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
+            'change' => [
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => true,
             ],
-            'down_payment' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
+            'receive' => [
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => true,
+            ],
+            'discount' => [
+                'type' => 'int',
+                'constraint' => '5',
+                'null' => true,
+            ],
+            'payment_method' => [
+                'type'       => 'ENUM("Cash", "Non Tunai", "DP/Booking", "Amal Saleh")',
+                'null'       => true,
+            ],
+            'service' => [
+                'type'       => 'ENUM("Catering","Dine In", "Take Away")',
+                'null'       => true,
             ],
             'created_at' => [
                 'type' => 'DATE',
+                'null' => true,
             ],
             'updated_at' => [
                 'type' => 'DATE',
+                'null' => true,
             ],
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('products_id', 'products', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('customers_id', 'customers', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('transactions');
-    } 
+    }
 
     public function down()
     {

@@ -16,6 +16,16 @@ $routes->get('/dashboard', 'DashboardController::index');
 
 
 $routes->get('/transaksi', 'TransaksiController::index');
+$routes->get('/transaksi-produk/(:num)', 'TransaksiController::indexGallery/$1');
+$routes->post('/transaksi-keranjang', 'TransaksiController::storeToCart');
+$routes->post('/transaksi-simpan', 'TransaksiController::updateCart');
+
+$routes->get('/transaksi-hapus-item/(:num)', 'TransaksiController::deleteFromCart/$1');
+$routes->get('/payment-detail/(:num)', 'TransaksiController::payment_process/$1');
+$routes->post('/checkout', 'TransaksiController::checkout');
+$routes->get('/invoice/(:num)', 'TransaksiController::invoice_view/$1');
+
+// $routes->get('TransactionController/indexGallery/', );
 
 // Bahan Baku
 $routes->get('/bahan-baku-masuk', 'BahanBakuController::masuk');

@@ -38,12 +38,10 @@ class TransactionsSeeder extends Seeder
 
             $data[] = [
                 'products_id' => $productId,
-                'customers_id' => $customersId,
                 'service' => $service,
                 'status' => $status,
                 'qty' => $qty,
                 'total_price' => $totalPrice,
-                'receive_price_discount' => $receivePriceDiscount,
                 'down_payment' => $downPayment,
                 'created_at' => date('Y-m-d'),
                 'updated_at' => date('Y-m-d'),

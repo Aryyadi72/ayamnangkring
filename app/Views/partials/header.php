@@ -34,13 +34,13 @@
         </form>
       </div>
     </li>
-    <li class="pc-h-item d-none d-md-inline-flex">
+    <!-- <li class="pc-h-item d-none d-md-inline-flex">
       <form class="header-search">
         <i class="ti ti-search icon-search"></i>
         <input type="search" class="form-control" placeholder="Search here..." />
         <button class="btn btn-light-secondary btn-search"><i class="ti ti-adjustments-horizontal"></i></button>
       </form>
-    </li>
+    </li> -->
   </ul>
 </div>
 <!-- [Mobile Media Block end] -->
@@ -54,7 +54,7 @@
       </label>
     </li>
 
-    <li class="dropdown pc-h-item">
+    <!-- <li class="dropdown pc-h-item">
       <a class="pc-head-link head-link-secondary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
         role="button" aria-haspopup="false" aria-expanded="false">
         <i class="ti ti-bell"></i>
@@ -151,7 +151,7 @@
           <a href="#!" class="link-primary">Mark as all read</a>
         </div>
       </div>
-    </li>
+    </li> -->
 
     <li class="dropdown pc-h-item header-user-profile">
       <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Models\TransactionDetailsModel;
 
 class ProdukModel extends Model
 {
@@ -43,4 +44,8 @@ class ProdukModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetailsModel::class, 'product_id');
+    }
 }
