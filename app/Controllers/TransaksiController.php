@@ -15,8 +15,7 @@ class TransaksiController extends BaseController
     {
         $title['title'] = "Data Transaki - Transaksi";
         $transaksiModel = new TransactionsModel();
-        $transaksi['transaksi'] = $transaksiModel->findAll();
-        // return $this->response->setJSON(['status' => 'success', 'message' => 'Transaksi Berhasil Ditampilkan!', 'data' => $transaksi]);
+        $transaksi['transaksi'] = $transaksiModel->getTransaction();
         return view('/pages/transaksi/index', ['title' => $title, 'transaksi' => $transaksi]);
     }
 
@@ -26,8 +25,10 @@ class TransaksiController extends BaseController
 
         $validationRules = [
             'products_id' => 'required|integer',
+            'customers_id' => 'required|integer',
             'service' => 'required|max_length[255]',
             'status' => 'required|max_length[50]',
+            'qty' => 'required|numeric',
             'total_price' => 'required|numeric',
             'receive_price_discount' => 'required|numeric',
             'down_payment' => 'required|numeric',
@@ -36,8 +37,10 @@ class TransaksiController extends BaseController
         if ($this->validate($validationRules)) {
             $dataToAdd = [
                 'products_id' => $this->request->getPost('products_id'),
+                'customers_id' => $this->request->getPost('customers_id'),
                 'service' => $this->request->getPost('service'),
                 'status' => $this->request->getPost('status'),
+                'qty' => $this->request->getPost('qty'),
                 'total_price' => $this->request->getPost('total_price'),
                 'receive_price_discount' => $this->request->getPost('receive_price_discount'),
                 'down_payment' => $this->request->getPost('down_payment'),
@@ -65,8 +68,10 @@ class TransaksiController extends BaseController
 
         $validationRules = [
             'products_id' => 'required|integer',
+            'customers_id' => 'required|integer',
             'service' => 'required|max_length[255]',
             'status' => 'required|max_length[50]',
+            'qty' => 'required|numeric',
             'total_price' => 'required|numeric',
             'receive_price_discount' => 'required|numeric',
             'down_payment' => 'required|numeric',
@@ -75,8 +80,10 @@ class TransaksiController extends BaseController
         if ($this->validate($validationRules)) {
             $dataToUpdate = [
                 'products_id' => $this->request->getPost('products_id'),
+                'customers_id' => $this->request->getPost('customers_id'),
                 'service' => $this->request->getPost('service'),
                 'status' => $this->request->getPost('status'),
+                'qty' => $this->request->getPost('qty'),
                 'total_price' => $this->request->getPost('total_price'),
                 'receive_price_discount' => $this->request->getPost('receive_price_discount'),
                 'down_payment' => $this->request->getPost('down_payment'),

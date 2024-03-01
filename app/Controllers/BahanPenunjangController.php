@@ -7,43 +7,54 @@ use App\Models\BahanPenunjangModel;
 
 class BahanPenunjangController extends BaseController
 {
+    protected $filters = ['auth'];
+
+    protected $helpers = ['form'];
+
+    protected $session;
+
+    public function __construct()
+    {
+        $this->session = \Config\Services::session();
+
+        if (!$this->session->has('user_id')) {
+            return redirect()->to('/login');
+        }
+    }
+
     public function index()
     {
         $title['title'] = "Data Bahan Penunjang - Bahan Penunjang";
         $bahanPenunjangModel = new BahanPenunjangModel;
-        $bahanPenunjang = $bahanPenunjangModel->findAll();
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Bahan Penunjang Berhasil Ditampilkan!', 'data' => $bahanPenunjang]);
+        $bahanPenunjang['bahan'] = $bahanPenunjangModel->findAll();
+        return view('pages/inventory/bahan-penunjang/index', ['title' => $title, 'bahanPenunjang' => $bahanPenunjang]);
     }
 
     public function create()
     {
         $title['title'] = "Data Bahan Penunjang - Bahan Penunjang";
-        $bahanPenunjangModel = new BahanPenunjangModel;
-        $bahanPenunjang = $bahanPenunjangModel->findAll();
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Bahan Penunjang Berhasil Ditampilkan!', 'data' => $bahanPenunjang]);
+        return view('pages/inventory/bahan-penunjang/create', ['title' => $title]);
     }
 
     public function store()
     {
-        $data['title'] = 'Tambah Bahan Penunjang';
-
         $bahanPenunjangModel = new BahanPenunjangModel();
 
         $validationRules = [
-            'nama'     => 'required|max_length[255]',
-            'qty'      => 'required|integer',
-            'satuan'   => 'required|in_list[PCS,CUP,PACK]',
+            'nama' => 'required|max_length[255]',
+            'qty' => 'required|integer',
+            'satuan' => 'required|in_list[PCS,CUP,PACK]',
             'kategori' => 'required|in_list[HABIS PAKAI,SEMI PERMANEN,PERMANEN]',
-            'harga'    => 'required|numeric',
+            'harga' => 'required|numeric',
         ];
 
         if ($this->validate($validationRules)) {
             $dataToAdd = [
-                'nama'     => $this->request->getPost('nama'),
-                'qty'      => $this->request->getPost('qty'),
-                'satuan'   => $this->request->getPost('satuan'),
+                'nama' => $this->request->getPost('nama'),
+                'qty' => $this->request->getPost('qty'),
+                'satuan' => $this->request->getPost('satuan'),
                 'kategori' => $this->request->getPost('kategori'),
-                'harga'    => $this->request->getPost('harga'),
+                'harga' => $this->request->getPost('harga'),
                 'created_at' => date('Y-m-d'),
                 'updated_at' => date('Y-m-d'),
             ];
@@ -51,29 +62,36 @@ class BahanPenunjangController extends BaseController
             $result = $bahanPenunjangModel->insert($dataToAdd);
 
             if ($result) {
-                session()->setFlashdata("success", "Berhasil disimpan!");
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Berhasil disimpan!', 'data' => $dataToAdd]);
+                session()->setFlashdata("success", "Data Berhasil Ditambahkan!!!");
+                return redirect()->to(base_url('/bahan-penunjang'));
             } else {
-                session()->setFlashdata("error", "Data gagal ditambahkan.");
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal ditambahkan.']);
+                session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+                return redirect()->back();
             }
         } else {
-            return $this->response->setJSON(['status' => 'validation_error', 'errors' => $this->validator->getErrors()]);
+            session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+            return redirect()->back();
         }
+    }
+
+    public function edit($id)
+    {
+        $title['title'] = "Ubah Bahan Penunjang - Bahan Penunjang";
+        $bahanPenunjangModel = new BahanPenunjangModel;
+        $bahanPenunjang['bahan'] = $bahanPenunjangModel->getBahanPenunjangById($id);
+        return view('pages/inventory/bahan-penunjang/edit', ['title' => $title, 'bahanPenunjang' => $bahanPenunjang]);
     }
 
     public function update($id)
     {
-        $data['title'] = 'Edit Bahan Penunjang';
-
         $bahanPenunjangModel = new BahanPenunjangModel();
 
         $validationRules = [
-            'nama'     => 'required|max_length[255]',
-            'qty'      => 'required|integer',
-            'satuan'   => 'required|in_list[PCS,CUP,PACK]',
+            'nama' => 'required|max_length[255]',
+            'qty' => 'required|integer',
+            'satuan' => 'required|in_list[PCS,CUP,PACK]',
             'kategori' => 'required|in_list[HABIS PAKAI,SEMI PERMANEN,PERMANEN]',
-            'harga'    => 'required|numeric',
+            'harga' => 'required|numeric',
         ];
 
         if ($this->validate($validationRules)) {
@@ -84,25 +102,26 @@ class BahanPenunjangController extends BaseController
             }
 
             $dataToUpdate = [
-                'nama'     => $this->request->getPost('nama'),
-                'qty'      => $this->request->getPost('qty'),
-                'satuan'   => $this->request->getPost('satuan'),
+                'nama' => $this->request->getPost('nama'),
+                'qty' => $this->request->getPost('qty'),
+                'satuan' => $this->request->getPost('satuan'),
                 'kategori' => $this->request->getPost('kategori'),
-                'harga'    => $this->request->getPost('harga'),
+                'harga' => $this->request->getPost('harga'),
                 'updated_at' => date('Y-m-d'),
             ];
 
             $result = $bahanPenunjangModel->update($id, $dataToUpdate);
 
             if ($result) {
-                session()->setFlashdata("success", "Berhasil diupdate!");
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Berhasil diupdate!', 'data' => $dataToUpdate]);
+                session()->setFlashdata("success", "Data Berhasil Ditambahkan!!!");
+                return redirect()->to(base_url('/bahan-penunjang'));
             } else {
-                session()->setFlashdata("error", "Data gagal diupdate.");
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal diupdate.']);
+                session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+                return redirect()->back();
             }
         } else {
-            return $this->response->setJSON(['status' => 'validation_error', 'errors' => $this->validator->getErrors()]);
+            session()->setFlashdata("error", "Data Gagal Ditambahkan!!!");
+            return redirect()->back();
         }
     }
 
@@ -120,10 +139,10 @@ class BahanPenunjangController extends BaseController
 
         if ($result) {
             session()->setFlashdata("success", "Berhasil dihapus!");
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Data berhasil dihapus']);
+            return redirect()->back();
         } else {
             session()->setFlashdata("error", "Data gagal dihapus.");
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal dihapus']);
+            return redirect()->back();
         }
     }
 

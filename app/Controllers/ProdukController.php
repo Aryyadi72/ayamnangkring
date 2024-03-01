@@ -16,7 +16,6 @@ class ProdukController extends BaseController
         $title['title'] = "Gallery View - Produk";
         $produkModel = new ProdukModel();
         $produk['produk'] = $produkModel->findAll();
-        // return $this->response->setJSON(['status' => 'success', 'message' => 'Produk Berhasil Ditampilkan!']);
         return view('pages/produk/gallery-view', ['title' => $title, 'produk' => $produk]);
     }
 
@@ -25,17 +24,13 @@ class ProdukController extends BaseController
         $title['title'] = "Table View - Produk";
         $produkModel = new ProdukModel();
         $produk['produk'] = $produkModel->findAll();
-        // return $this->response->setJSON(['status' => 'success', 'message' => 'Produk Berhasil Ditampilkan!']);
         return view('pages/produk/index', ['title' => $title, 'produk' => $produk]);
     }
 
     public function create()
     {
         $title['title'] = "Tambah - Produk";
-        $produkModel = new ProdukModel();
-        $produk = $produkModel->findAll();
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Produk Berhasil Ditampilkan!', 'data' => $produk]);
-        return view('pages/produk/create', $title);
+        return view('pages/produk/create', ['title' => $title]);
     }
 
     public function store()
@@ -74,20 +69,16 @@ class ProdukController extends BaseController
 
             if ($result) {
                 session()->setFlashdata("success", "Berhasil disimpan!");
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Produk berhasil disimpan!', 'data' => $dataToAdd]);
                 return redirect()->to(base_url('produk/produk-table'));
             } else {
                 session()->setFlashdata("error", "Data gagal ditambahkan.");
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal ditambahkan.']);
                 return redirect()->back();
             }
         } else {
-            return redirect()->to(base_url('produk/create'))->withInput()->with('errors', $this->validator->getErrors());
-            return $this->response->setJSON(['status' => 'validation_error', 'errors' => $this->validator->getErrors()]);
+            session()->setFlashdata("error", "Data gagal ditambahkan.");
+            return redirect()->back();
         }
     }
-
-
 
     public function edit($id)
     {
@@ -95,7 +86,7 @@ class ProdukController extends BaseController
         $data['product'] = $model->getProductById($id);
         $title['title'] = "Edit - Produk";
 
-        return view('pages/produk/edit', $title, $data);
+        return view('pages/produk/edit', ['title' => $title, 'data' => $data]);
     }
 
     public function update($id)
@@ -122,19 +113,16 @@ class ProdukController extends BaseController
 
             if ($result) {
                 session()->setFlashdata("success", "Produk berhasil diupdate!");
-                return $this->response->setJSON(['status' => 'success', 'message' => 'Produk berhasil diupdate!', 'data' => $dataToUpdate]);
                 return redirect()->to(base_url('produk/produk-table'));
             } else {
                 session()->setFlashdata("error", "Data gagal diupdate.");
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Data gagal diupdate.']);
                 return redirect()->back();
             }
         } else {
-            return redirect()->to(base_url("produk/edit/$id"))->withInput()->with('errors', $this->validator->getErrors());
-            return $this->response->setJSON(['status' => 'validation_error', 'errors' => $this->validator->getErrors()]);
+            session()->setFlashdata("error", "Data gagal diupdate.");
+            return redirect()->back();
         }
     }
-
 
     public function delete($id)
     {
@@ -145,13 +133,10 @@ class ProdukController extends BaseController
         if ($product) {
             $model->delete($id);
 
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Produk berhasil dihapus']);
-            return redirect()->to(base_url('produk'))->with('success', 'Produk berhasil dihapus');
+            return redirect()->back();
         } else {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Produk tidak ditemukan']);
+            return redirect()->back();
         }
-        return redirect()->to(base_url('produk'))->with('error', 'Produk tidak ditemukan');
-
     }
 
 }

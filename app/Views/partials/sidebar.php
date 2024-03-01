@@ -16,20 +16,23 @@
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/dashboard') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-dashboard"></i></span><span
-                        class="pc-mtext">Dashboard</span></a>
+                    <a href="<?= base_url('/') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-dashboard"></i></span><span class="pc-mtext">Dashboard</span></a>
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-meat"></i></span><span
-                        class="pc-mtext">Produk</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
+                            class="pc-mtext">Produk</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-table') ?>">Table View</a></li>
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-gallery') ?>">Gallery View</a></li>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-table') ?>">Table
+                                View</a></li>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-gallery') ?>">Gallery
+                                View</a></li>
                     </ul>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/login') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-logout"></i></span><span
-                        class="pc-mtext">Logout</span></a>
+                    <a href="<?= base_url('/users') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-user"></i></span><span class="pc-mtext">Master Users</span></a>
                 </li>
                 <!-- Dashboard End -->
 
@@ -39,8 +42,8 @@
                     <i class="ti ti-report-money"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/transaksi') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-report-money"></i></span><span
-                        class="pc-mtext">Transaksi</span></a>
+                    <a href="<?= base_url('/transaksi') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-report-money"></i></span><span class="pc-mtext">Transaksi</span></a>
                 </li>
                 <!-- Transaksi End -->
 
@@ -51,10 +54,13 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-sausage"></i></span><span
-                        class="pc-mtext">Pengadaan Harian</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
+                            class="pc-mtext">Pengadaan Harian</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/bahan-baku-masuk') ?>">Masuk</a></li>
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/bahan-baku-keluar') ?>">Keluar</a></li>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/bahan-baku-masuk') ?>">Masuk</a>
+                        </li>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/bahan-baku-keluar') ?>">Keluar</a>
+                        </li>
                     </ul>
                 </li>
                 <!-- Bahan Baku End -->
@@ -65,12 +71,13 @@
                     <i class="ti ti-building-warehouse"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/bahan-penunjang') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-building-warehouse"></i></span><span
-                        class="pc-mtext">Bahan Penunjang</span></a>
+                    <a href="<?= base_url('/bahan-penunjang') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-building-warehouse"></i></span><span class="pc-mtext">Bahan
+                            Penunjang</span></a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/alat-produksi') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-tools-kitchen"></i></span><span
-                        class="pc-mtext">Alat Produksi</span></a>
+                    <a href="<?= base_url('/alat-produksi') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-tools-kitchen"></i></span><span class="pc-mtext">Alat Produksi</span></a>
                 </li>
                 <!-- Inventory End -->
 
@@ -80,13 +87,17 @@
                     <i class="ti ti-users"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/data-karyawan') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-users"></i></span><span
-                        class="pc-mtext">Data Karyawan</span></a>
+                    <a href="<?= base_url('/employees') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-users"></i></span><span class="pc-mtext">Data Karyawan</span></a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('/gaji') ?>" class="pc-link"><span class="pc-micon"><i class="ti ti-wallet"></i></span><span
-                        class="pc-mtext">Perhitungan Gaji</span></a>
+                    <a href="<?= base_url('/salary/filter') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-wallet"></i></span><span class="pc-mtext">Perhitungan Gaji</span></a>
                 </li>
+                <!-- <li class="pc-item">
+                    <a href="<?= base_url('/salary/filter-pdf') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-vocabulary"></i></span><span class="pc-mtext">Slip Gaji</span></a>
+                </li> -->
                 <!-- SDM End -->
 
                 <!-- Maintenance -->
@@ -95,20 +106,26 @@
                     <i class="ti ti-settings"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="../dashboard/index.html" class="pc-link"><span class="pc-micon"><i class="ti ti-settings"></i></span><span
-                        class="pc-mtext">Pemeliharaan</span></a>
+                    <a href="../dashboard/index.html" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-settings"></i></span><span class="pc-mtext">Pemeliharaan</span></a>
                 </li>
                 <li class="pc-item">
-                    <a href="../dashboard/index.html" class="pc-link"><span class="pc-micon"><i class="ti ti-wand"></i></span><span
-                        class="pc-mtext">Upgrade</span></a>
+                    <a href="../dashboard/index.html" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-wand"></i></span><span class="pc-mtext">Upgrade</span></a>
                 </li>
                 <!-- Maintenance End -->
+
+                <!-- Users -->
+                <li class="pc-item pc-caption">
+                    <label>Logout</label>
+                    <i class="ti ti-settings"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('/login') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-logout"></i></span><span class="pc-mtext">Logout</span></a>
+                </li>
+                <!-- Users End -->
             </ul>
-            <div class="pc-navbar-card bg-primary rounded">
-                <h4 class="text-white">Berry Pro</h4>
-                <p class="text-white opacity-75">Checkout Berry pro features</p>
-                <a href="https://codedthemes.com/item/berry-bootstrap-5-admin-template/" class="btn btn-light text-primary">Pro</a>
-            </div>
         </div>
     </div>
 </nav>
