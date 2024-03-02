@@ -19,11 +19,14 @@ $routes->get('/transaksi', 'TransaksiController::index');
 $routes->get('/transaksi-produk/(:num)', 'TransaksiController::indexGallery/$1');
 $routes->post('/transaksi-keranjang', 'TransaksiController::storeToCart');
 $routes->post('/transaksi-simpan', 'TransaksiController::updateCart');
+$routes->get('/transaksi-filter', 'TransaksiController::showFilteredData');
+
 
 $routes->get('/transaksi-hapus-item/(:num)', 'TransaksiController::deleteFromCart/$1');
 $routes->get('/payment-detail/(:num)', 'TransaksiController::payment_process/$1');
 $routes->post('/checkout', 'TransaksiController::checkout');
 $routes->get('/invoice/(:num)', 'TransaksiController::invoice_view/$1');
+$routes->get('/print/(:num)', 'TransaksiController::print_view/$1');
 
 // $routes->get('TransactionController/indexGallery/', );
 

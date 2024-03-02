@@ -186,9 +186,11 @@
                 <button type="button" class="btn btn-sm btn-dark rounded-pill mr-2">
                     <i class="fa-solid fa-arrow-left"></i> Kembali
                 </button>
-                <button type="button" class="btn btn-sm rounded-pill btn-primary">
-                    <i class="fa-solid fa-print"></i></i> Print
-                </button>
+               <a href="<?= base_url('print/' . $transaction['id']) ?>" class="btn btn-sm rounded-pill btn-primary">
+    <i class="fa-solid fa-print"></i> Print
+</a>
+
+
             </div>
         </div>
     </div>
@@ -243,4 +245,9 @@
 
 <script>$('#transaksi').DataTable();</script>
 
+<script>
+function printPage() {
+    window.print();
+}
+</script>
 <?= $this->endSection();?>

@@ -55,44 +55,45 @@
 
 </div>
 
-<form method="get" action="">
+<form method="get" action="<?= base_url('/transaksi-filter')?>">
     <div class="input-group col-8 ml-3 mt-4">
         <label for="FilterData" class="mr-2 mt-1"><b>Start Date : </b></label>
-        <input type="date" name="start_date" class="form-control form-control-sm mr-2" value="" placeholder="Start Date">
+        <input type="date" name="start_date" class="form-control form-control-sm mr-2" value="<?= set_value('start_date') ?>" placeholder="Start Date" required>
         <label for="FilterData" class="mr-2 mt-1"><b>End Date : </b></label>
-        <input type="date" name="end_date" class="form-control form-control-sm mr-2" value="" placeholder="End Date">
+        <input type="date" name="end_date" class="form-control form-control-sm mr-2" value="<?= set_value('end_date') ?>" placeholder="End Date" required>
         <button type="submit" class="btn btn-sm btn-primary rounded-pill mr-2">Filter</button>
-        <a href="" class="btn btn-sm btn-danger rounded-pill">Reset</a>
+        <a href="<?= base_url('/transaksi') ?>" class="btn btn-sm btn-danger rounded-pill">Reset</a>
     </div>
 </form>
 
+
 <div class="input-group col-4 ml-3 mt-4">
-    <button type="button" class="btn btn-sm btn-danger rounded-pill mr-2">
-        <i class="fas fa-file-pdf"></i> Export PDF
-    </button>
-    <button type="button" class="btn btn-sm rounded-pill btn-success">
-        <i class="fas fa-file-excel"></i> Export Excel
-    </button>
+<button type="button" class="btn btn-sm btn-danger rounded-pill mr-2" id="btn-pdf">
+    <i class="fas fa-file-pdf"></i> Print PDF
+</button>  
+<button type="button" class="btn btn-sm rounded-pill btn-success" id="btn-d">
+    <i class="fas fa-file-excel"></i> Export Excel
+</button>
 </div>
 <div class="card-body">
-        <table id="transaksi" class="table table-striped" style="width:100%">
+        <table id="transaksi" class="table table-striped" style="width:100%" data-cols-width="5,20,15,20,12">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Pelanggan</th>
-                    <th>Tanggal Transaksi</th>
-                    <th>Total Harga</th>
-                    <th>Status</th>
-                    <th class="text-center">Aksi</th>
+                    <th data-b-a-s>No</th>
+                    <th data-b-a-s>Nama Pelanggan</th>
+                    <th data-b-a-s>Tanggal Transaksi</th>
+                    <th data-b-a-s>Total Harga</th>
+                    <th data-b-a-s>Status</th>
+                    <th data-exclude="true" class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($transaksi as $index => $data) : ?>
                     <tr>
-                        <td><?= $index + 1 ?></td>
-                        <td><?= $data['customers'] ?? 'N/A' ?></td>
-                        <td><?= $data['created_at'] ?? 'N/A' ?></td>
-                        <td><?= $data['total_price'] ?? 'N/A' ?></td>
+                        <td data-b-a-s><?= $index + 1 ?></td>
+                        <td data-b-a-s><?= $data['customers'] ?? 'N/A' ?></td>
+                        <td data-b-a-s data-t="d"><?= $data['created_at'] ?? 'N/A' ?></td>
+                        <td data-b-a-s data-t="n"><?= $data['total_price'] ?? 'N/A' ?></td>
                         <td>
                             <?php
                             $badgeClass = '';
@@ -114,7 +115,7 @@
                                 <?= $data['status'] ?? 'Pending' ?>
                             </span>
                         </td>
-                        <td class="text-center">
+                        <td data-exclude="true" class="text-center">
                             <a href="<?= base_url('/produk-gallery-view/delete/' . $data['id']) ?>" class="btn rounded-pill btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
                                 <i class="ti ti-trash"></i> Hapus
                             </a>
@@ -182,7 +183,24 @@
 
 
 <script>$('#transaksi').DataTable();</script>
+<script src="<?= base_url('assets/js/tableToExcel.js') ?>"></script>
+    <script>
+        $("#btn-d").click(function() {
+            TableToExcel.convert(document.getElementById("transaksi"), {
+                name: "Laporan Transaksi.xlsx",
+            });
+        });
+    </script>
 
+<script>
+    // Function to trigger the print window
+    function printPDF() {
+        // Open the print window
+        window.print();
+    }
 
+    // Attach click event to the "Print PDF" button
+    document.getElementById("btn-pdf").addEventListener("click", printPDF);
+</script>
 
 <?= $this->endSection();?>

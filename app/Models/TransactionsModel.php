@@ -47,4 +47,22 @@ use App\Models\TransactionDetailsModel;
     {
         return $this->hasMany(TransactionDetailsModel::class, 'transaction_id');
     }
+
+// Model function to get filtered data
+public function getFilteredData($start_date, $end_date) {
+    // Add your database query logic to fetch data based on the provided dates
+    // Make sure to properly escape and validate user input to prevent SQL injection
+
+    // Example:
+    return $this->db->table('transactions')
+        ->select('*')
+        ->where('created_at >=', $start_date)
+        ->where('created_at <=', $end_date)
+        ->where('created_at IS NOT NULL', null, false) // Add the third parameter to disable quoting
+        ->get()
+        ->getResultArray();
+}
+
+
+
     }

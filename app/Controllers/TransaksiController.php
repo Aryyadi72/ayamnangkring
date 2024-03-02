@@ -114,6 +114,26 @@ public function invoice_view($transactionId)
     return view('pages/transaksi/invoice', $title + $data);
 }
 
+public function print_view($transactionId)
+{
+    $title['title'] = "Transaksi - Produk";
+
+    $transaksiModel = new TransactionsModel();
+    $transaction = $transaksiModel->find($transactionId);
+
+    $transaksiDetailModel = new TransactionDetailsModel();
+    $transactionDetails = $transaksiDetailModel->where('transaction_id', $transactionId)->findAll();
+
+    $transdetail = $transaksiDetailModel->getTransactionDetailsWithProductAndTransaction();
+
+    $data['transaction'] = $transaction;
+    $data['transactionDetails'] = $transactionDetails;
+    $data['transdetail'] = $transdetail;
+
+    // Pass the transaction data to the view
+    return view('pages/transaksi/print', $title + $data);
+}
+
 
 
 public function index()
@@ -399,6 +419,34 @@ foreach ($transdetail as $detail) {
         }
     }
 }
+
+
+// Controller function that loads the view with the filtered data
+public function showFilteredData() {
+    $start_date = $this->request->getGet('start_date');
+    $end_date = $this->request->getGet('end_date');
+
+    // Check if both start and end dates are provided and not empty
+    if (!empty($start_date) && !empty($end_date)) {
+        // Add validation for dates if needed
+
+        // Perform database query only if dates are not empty
+        $transaksiModel = new TransactionsModel();
+        $transaksi = $transaksiModel->getFilteredData($start_date, $end_date);
+
+        $data['transaksi'] = $transaksi;
+        $data['title'] = 'Transaksi - Produk'; // Replace with your actual title
+
+        // Load your view with the filtered data
+        return view('pages/transaksi/index', $data);
+    } else {
+        // Either start or end date is empty, redirect back to the same page
+        return view('pages/transaksi/index', [
+            'error' => 'Please provide both start and end dates.',
+        ]);
+    }
+}
+
 
 
 
