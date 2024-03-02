@@ -4,7 +4,7 @@
         <div class="m-header">
             <a href="index.html" class="b-brand">
                 <!-- ========   Change your logo from here   ============ -->
-                <img src="../assets/images/logo-dark.svg" alt="" class="logo logo-lg" />
+                <img src="<?= base_url('assets/images/logo_ayam_nangkring.svg') ?>" alt="" class="logo logo-lg" />
             </a>
         </div>
         <div class="navbar-content">
@@ -57,9 +57,9 @@
                             class="pc-mtext">Pengadaan Harian</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/bahan-baku-masuk') ?>">Masuk</a>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/pengadaan-masuk') ?>">Masuk</a>
                         </li>
-                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/bahan-baku-keluar') ?>">Keluar</a>
+                        <li class="pc-item"><a class="pc-link" href="<?= base_url('/pengadaan-keluar') ?>">Keluar</a>
                         </li>
                     </ul>
                 </li>
@@ -106,25 +106,15 @@
                     <i class="ti ti-settings"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="../dashboard/index.html" class="pc-link"><span class="pc-micon"><i
+                    <a href="<?= base_url('/pemeliharaan') ?>" class="pc-link"><span class="pc-micon"><i
                                 class="ti ti-settings"></i></span><span class="pc-mtext">Pemeliharaan</span></a>
                 </li>
                 <li class="pc-item">
-                    <a href="../dashboard/index.html" class="pc-link"><span class="pc-micon"><i
+                    <a href="<?= base_url('/upgrade') ?>" class="pc-link"><span class="pc-micon"><i
                                 class="ti ti-wand"></i></span><span class="pc-mtext">Upgrade</span></a>
                 </li>
                 <!-- Maintenance End -->
 
-                <!-- Users -->
-                <li class="pc-item pc-caption">
-                    <label>Logout</label>
-                    <i class="ti ti-settings"></i>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('/login') ?>" class="pc-link"><span class="pc-micon"><i
-                                class="ti ti-logout"></i></span><span class="pc-mtext">Logout</span></a>
-                </li>
-                <!-- Users End -->
             </ul>
         </div>
     </div>

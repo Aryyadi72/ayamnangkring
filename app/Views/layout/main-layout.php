@@ -17,7 +17,7 @@
     <meta name="author" content="CodedThemes" />
 
     <!-- [Favicon] icon -->
-    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="icon" href="assets/images/logo_ayam_nangkring.jpg" type="image/x-icon" />
     <!-- [Google Font] Family -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
         id="main-font-link" />
@@ -100,6 +100,7 @@
     <!-- Apex Chart -->
     <script src="<?= base_url('assets/js/plugins/apexcharts.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/pages/dashboard-default.js') ?>"></script>
+    <script src="<?= base_url('assets/js/tableToExcel.js') ?>"></script>
     <!-- [Page Specific JS] end -->
 
     <style>

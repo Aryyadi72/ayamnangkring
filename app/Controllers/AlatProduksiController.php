@@ -92,57 +92,6 @@ class AlatProduksiController extends BaseController
         return view('pages/inventory/alat-produksi/edit', ['title' => $title, 'alatProduksi' => $alatProduksi]);
     }
 
-    // public function update($id)
-    // {
-    //     $alatProduksiModel = new AlatProduksiModel();
-
-    //     $validationRules = [
-    //         'name' => 'required|max_length[255]',
-    //         'image' => 'uploaded[image]|max_size[image,4096]|is_image[image]',
-    //         'qty' => 'required|integer',
-    //         'satuan' => 'required|in_list[PCS,UNIT,BUAH]',
-    //         'status' => 'required|in_list[LAYAK PAKAI,TIDAK LAYAK,RUSAK]',
-    //         'price' => 'required|numeric',
-    //     ];
-
-    //     if ($this->validate($validationRules)) {
-    //         $existingData = $alatProduksiModel->find($id);
-
-    //         if (!$existingData) {
-    //             return $this->response->setJSON(['status' => 'error', 'message' => 'Data not found.']);
-    //         }
-
-    //         $image = $this->request->getFile('image');
-
-    //         if ($image->isValid() && !$image->hasMoved()) {
-    //             $image->move(ROOTPATH . 'public/uploads/alat_produksi');
-
-    //             $imageName = $image->getName();
-    //         }
-
-    //         $dataToUpdate = [
-    //             'name' => $this->request->getPost('name'),
-    //             'qty' => $this->request->getPost('qty'),
-    //             'price' => $this->request->getPost('price'),
-    //             'image' => isset($imageName) ? $imageName : $existingData['image'],
-    //             'updated_at' => date('Y-m-d'),
-    //         ];
-
-    //         $result = $alatProduksiModel->update($id, $dataToUpdate);
-
-    //         if ($result) {
-    //             session()->setFlashdata("success", "Berhasil diupdate!");
-    //             return redirect()->to(base_url('produk/produk-table'));
-    //         } else {
-    //             session()->setFlashdata("error", "Data gagal diupdate.");
-    //             return redirect()->back();
-    //         }
-    //     } else {
-    //         session()->setFlashdata("error", "Data gagal diupdate.");
-    //         return redirect()->back();
-    //     }
-    // }
-
     public function update()
     {
         $alatProduksiModel = new AlatProduksiModel();

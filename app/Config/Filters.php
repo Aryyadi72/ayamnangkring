@@ -70,6 +70,6 @@ class Filters extends BaseConfig
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
     public array $filters = [
-        'auth' => ['before' => ['/', '/employees', '/transaksi', '/alat-produksi', '/bahan-penunjang', '/users', '/salary']],
+        'auth' => ['before' => ['/', '/employees', '/transaksi', '/alat-produksi', '/bahan-penunjang', '/users', '/salary', '/pengadaan-masuk', '/pengadaan-keluar', '/pemeliharaan', '/upgrade']],
     ];
 }

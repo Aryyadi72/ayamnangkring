@@ -31,7 +31,8 @@ class TransaksiController extends BaseController
         $title['title'] = "Transaksi - Produk";
 
         // Pass the data to the view
-        return view('pages/transaksi/product_card', $title + [
+        return view('pages/transaksi/product_card', [
+            'title' => $title,
             'produk' => $produk,
             'transaction' => $transaction,
             'transactionDetails' => $transactionDetails,
@@ -68,7 +69,13 @@ class TransaksiController extends BaseController
         $data['transactionDetails'] = $transactionDetails;
         $data['transdetail'] = $transdetail;
 
-        return view('pages/transaksi/payment', $title + $data);
+        return view('pages/transaksi/payment', [
+            'title' => $title,
+            'produk' => $produk,
+            'transaction' => $transaction,
+            'transactionDetails' => $transactionDetails,
+            'transdetail' => $transdetail,
+        ]);
     }
 
 
@@ -111,7 +118,12 @@ class TransaksiController extends BaseController
         $data['transdetail'] = $transdetail;
 
         // Pass the transaction data to the view
-        return view('pages/transaksi/invoice', $title + $data);
+        return view('pages/transaksi/invoice', [
+            'title' => $title,
+            'transaction' => $transaction,
+            'transactionDetails' => $transactionDetails,
+            'transdetail' => $transdetail,
+        ]);
     }
 
 
@@ -124,7 +136,7 @@ class TransaksiController extends BaseController
             $transaksi = $transaksiModel->getTransaction();
 
             // Return the view with the data
-            return view('/pages/transaksi/index', $title + ['transaksi' => $transaksi]);
+            return view('/pages/transaksi/index', ['title' => $title, 'transaksi' => $transaksi]);
         } catch (\Exception $e) {
             // Handle the exception, log it, or redirect to an error page
             return $this->response->setJSON(['status' => 'error', 'message' => 'An error occurred while fetching data.']);

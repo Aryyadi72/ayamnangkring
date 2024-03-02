@@ -35,11 +35,11 @@ $routes->get('/invoice/(:num)', 'TransaksiController::invoice_view/$1');
 // $routes->get('TransactionController/indexGallery/', );
 
 // Bahan Baku
-$routes->get('/bahan-baku-masuk', 'BahanBakuController::masuk');
-$routes->get('/bahan-baku-keluar', 'BahanBakuController::keluar');
+// $routes->get('/bahan-baku-masuk', 'BahanBakuController::masuk');
+// $routes->get('/bahan-baku-keluar', 'BahanBakuController::keluar');
 
-$routes->get('/maintenance', 'MaintenanceController::index');
-$routes->get('/upgrade', 'MaintenanceController::upgarde');
+// $routes->get('/maintenance', 'MaintenanceController::index');
+// $routes->get('/upgrade', 'MaintenanceController::upgarde');
 
 
 $routes->group('produk', function ($routes) {
@@ -116,4 +116,44 @@ $routes->group('salary', function ($routes) {
     $routes->post('filter-pdf', 'SalaryController::filter_pdf');
     $routes->post('update/(:num)', 'SalaryController::update/$1');
     $routes->get('delete/(:num)', 'SalaryController::delete/$1');
+});
+
+$routes->group('pengadaan-masuk', function ($routes) {
+    $routes->get('/', 'PengadaanMasukController::index');
+    $routes->get('create', 'PengadaanMasukController::create');
+    $routes->post('store', 'PengadaanMasukController::store');
+    $routes->get('edit/(:num)', 'PengadaanMasukController::edit/$1');
+    $routes->post('update/(:num)', 'PengadaanMasukController::update/$1');
+    $routes->get('delete/(:num)', 'PengadaanMasukController::delete/$1');
+    $routes->get('filter', 'PengadaanMasukController::filter');
+    $routes->post('filter', 'PengadaanMasukController::filter_proses');
+});
+
+$routes->group('pengadaan-keluar', function ($routes) {
+    $routes->get('/', 'PengadaanKeluarController::index');
+    $routes->get('create/(:num)', 'PengadaanKeluarController::create/$1');
+    $routes->post('store', 'PengadaanKeluarController::store');
+    $routes->get('edit/(:num)', 'PengadaanKeluarController::edit/$1');
+    $routes->post('update/(:num)', 'PengadaanKeluarController::update/$1');
+    $routes->get('delete/(:num)', 'PengadaanKeluarController::delete/$1');
+    $routes->get('filter', 'PengadaanKeluarController::filter');
+    $routes->post('filter', 'PengadaanKeluarController::filter_proses');
+});
+
+$routes->group('pemeliharaan', function ($routes) {
+    $routes->get('/', 'PemeliharaanController::index');
+    $routes->get('create', 'PemeliharaanController::create');
+    $routes->post('store', 'PemeliharaanController::store');
+    $routes->get('edit/(:num)', 'PemeliharaanController::edit/$1');
+    $routes->post('update/(:num)', 'PemeliharaanController::update/$1');
+    $routes->get('delete/(:num)', 'PemeliharaanController::delete/$1');
+});
+
+$routes->group('upgrade', function ($routes) {
+    $routes->get('/', 'UpgradeController::index');
+    $routes->get('create', 'UpgradeController::create');
+    $routes->post('store', 'UpgradeController::store');
+    $routes->get('edit/(:num)', 'UpgradeController::edit/$1');
+    $routes->post('update/(:num)', 'UpgradeController::update/$1');
+    $routes->get('delete/(:num)', 'UpgradeController::delete/$1');
 });
