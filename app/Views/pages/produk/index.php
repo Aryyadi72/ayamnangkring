@@ -44,43 +44,33 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Jumlah</th>
+                                    <th>Kategori</th>
                                     <th>Harga</th>
                                     <th>Foto</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $no = 1;
-                                foreach ($produk['produk'] as $produk):
-                                    ?>
+                                <?php foreach ($produk as $index => $data): ?>
                                     <tr>
                                         <td>
-                                            <?= $no++ ?>
+                                            <?= $index + 1 ?>
                                         </td>
                                         <td>
-                                            <?= $produk['name'] ?>
+                                            <?= $data['name'] ?>
                                         </td>
                                         <td>
-                                            <?= $produk['qty'] ?>
+                                            <?= $data['category'] ?>
                                         </td>
                                         <td>
-                                            <?= $produk['price'] ?>
+                                            <?= $data['price'] ?>
                                         </td>
                                         <td>
-                                            <?= $produk['image'] ?>
+                                            <?= $data['image'] ?>
                                         </td>
-                                        <td>
-                                            <a href="<?= base_url('/produk/edit/' . $produk['id']) ?>"
-                                                class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Edit"><i class="ti ti-pencil"></i></a>
-                                            <a href="<?= base_url('/produk/delete/' . $produk['id']) ?>"
-                                                class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Hapus"><i class="ti ti-trash"></i></a>
-                                        </td>
+                                        <td></td>
                                     </tr>
-                                <?php endforeach ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

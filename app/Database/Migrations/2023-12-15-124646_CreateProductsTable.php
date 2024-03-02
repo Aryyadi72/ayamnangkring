@@ -24,13 +24,17 @@ class CreateProductsTable extends Migration
                 'constraint' => 5,
             ],
             'price' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
+                'type' => 'INT',
+                'constraint' => '5',
             ],
             'image' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
+            ],
+            'category' => [
+                'type'       => 'ENUM("Makanan", "Minuman", "Layanan")',
+                'null'       => true,
             ],
             'created_at' => [
                 'type' => 'DATE',

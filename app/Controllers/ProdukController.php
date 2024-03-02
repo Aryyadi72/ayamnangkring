@@ -15,7 +15,8 @@ class ProdukController extends BaseController
     {
         $title['title'] = "Gallery View - Produk";
         $produkModel = new ProdukModel();
-        $produk['produk'] = $produkModel->findAll();
+        $produk = $produkModel->findAll();
+        // return $this->response->setJSON(['status' => 'success', 'message' => 'Produk Berhasil Ditampilkan!', 'data' => $produk]);
         return view('pages/produk/gallery-view', ['title' => $title, 'produk' => $produk]);
     }
 
@@ -23,14 +24,18 @@ class ProdukController extends BaseController
     {
         $title['title'] = "Table View - Produk";
         $produkModel = new ProdukModel();
-        $produk['produk'] = $produkModel->findAll();
+        $produk = $produkModel->findAll();
+        // return $this->response->setJSON(['status' => 'success', 'message' => 'Produk Berhasil Ditampilkan!', 'data' => $produk]);
         return view('pages/produk/index', ['title' => $title, 'produk' => $produk]);
     }
 
     public function create()
     {
         $title['title'] = "Tambah - Produk";
-        return view('pages/produk/create', ['title' => $title]);
+        $produkModel = new ProdukModel();
+        $produk = $produkModel->findAll();
+        // return $this->response->setJSON(['status' => 'success', 'message' => 'Produk Berhasil Ditampilkan!', 'data' => $produk]);
+        return view('pages/produk/create', $title);
     }
 
     public function store()
