@@ -20,9 +20,9 @@
                                 class="ti ti-dashboard"></i></span><span class="pc-mtext">Dashboard</span></a>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-meat"></i></span><span
-                            class="pc-mtext">Produk</span><span class="pc-arrow"><i
-                                class="ti ti-chevron-right"></i></span></a>
+                    <a href="<?= base_url('/produk/produk-table') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-meat"></i></span><span class="pc-mtext">Produk</span><span
+                            class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
                         <li class="pc-item"><a class="pc-link" href="<?= base_url('/produk/produk-table') ?>">Table
                                 View</a></li>
@@ -101,20 +101,22 @@
                 </li>
                 <!-- Inventory End -->
 
-                <!-- SDM -->
-                <li class="pc-item pc-caption">
-                    <label>SDM</label>
-                    <i class="ti ti-users"></i>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('/employees') ?>" class="pc-link"><span class="pc-micon"><i
-                                class="ti ti-users"></i></span><span class="pc-mtext">Data Karyawan</span></a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('/salary/filter') ?>" class="pc-link"><span class="pc-micon"><i
-                                class="ti ti-wallet"></i></span><span class="pc-mtext">Perhitungan Gaji</span></a>
-                </li>
-                <!-- SDM End -->
+                <?php if (session('username') === 'admin'): ?>
+                    <!-- SDM -->
+                    <li class="pc-item pc-caption">
+                        <label>SDM</label>
+                        <i class="ti ti-users"></i>
+                    </li>
+                    <li class="pc-item">
+                        <a href="<?= base_url('/employees') ?>" class="pc-link"><span class="pc-micon"><i
+                                    class="ti ti-users"></i></span><span class="pc-mtext">Data Karyawan</span></a>
+                    </li>
+                    <li class="pc-item">
+                        <a href="<?= base_url('/salary/filter') ?>" class="pc-link"><span class="pc-micon"><i
+                                    class="ti ti-wallet"></i></span><span class="pc-mtext">Perhitungan Gaji</span></a>
+                    </li>
+                    <!-- SDM End -->
+                <?php endif; ?>
 
                 <!-- SDM -->
                 <li class="pc-item pc-caption">

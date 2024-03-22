@@ -32,18 +32,32 @@
                         <h5>List Produk</h5>
                     </div>
                     <div class="card-body">
-                        <?= form_open_multipart('/produk/update/'.$data['product']['id']) ?>
+                        <form action="<?= site_url('/produk/update/' . $data['product']['id']) ?>" method="POST">
+                            <!-- <?= form_open_multipart('/produk/update/' . $data['product']['id']) ?> -->
                             <div class="mb-3">
                                 <label for="productName" class="form-label">Nama Produk</label>
-                                <input type="text" class="form-control" id="productName" name="name" aria-describedby="emailHelp" value="<?= $data['product']['name'] ?>">
+                                <input type="text" class="form-control" id="productName" name="name"
+                                    aria-describedby="emailHelp" value="<?= $data['product']['name'] ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="productQty" class="form-label">Jumlah Produk</label>
-                                <input type="number" class="form-control" id="productQty" name="qty" value="<?= $data['product']['qty'] ?>">
+                                <label for="productQty" class="form-label">Harga Produk</label>
+                                <input type="number" class="form-control" id="productQty" name="price"
+                                    value="<?= $data['product']['price'] ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="productPrice" class="form-label">Harga Produk</label>
-                                <input type="number" class="form-control" id="productPrice" name="price" value="<?= $data['product']['price'] ?>">
+                                <label for="productQty" class="form-label">Kategori Produk</label>
+                                <select class="form-select" aria-label="Default select example" name="category">
+                                    <option selected disabled>Pilih Kategori</option>
+                                    <option value="Menu Hemat" <?= ($data['product']['category'] == 'Menu Hemat') ? 'selected' : ''; ?>>Menu Hemat</option>
+                                    <option value="Menu Spesial" <?= ($data['product']['category'] == 'Menu Spesial') ? 'selected' : ''; ?>>Menu Spesial</option>
+                                    <option value="Menu Mantap" <?= ($data['product']['category'] == 'Menu Mantap') ? 'selected' : ''; ?>>Menu Mantap</option>
+                                    <option value="Menu Istimewa" <?= ($data['product']['category'] == 'Menu Istimewa') ? 'selected' : ''; ?>>Menu Istimewa</option>
+                                    <option value="Menu Tambah" <?= ($data['product']['category'] == 'Menu Tambah') ? 'selected' : ''; ?>>Menu Tambah</option>
+                                    <option value="Minuman" <?= ($data['product']['category'] == 'Minuman') ? 'selected' : ''; ?>>Minuman</option>
+                                    <option value="Aneka Jus" <?= ($data['product']['category'] == 'Aneka Jus') ? 'selected' : ''; ?>>Aneka Jus</option>
+                                    <option value="Yang Segar" <?= ($data['product']['category'] == 'Yang Segar') ? 'selected' : ''; ?>>Yang Segar</option>
+                                    <option value="Durian Si Mantap" <?= ($data['product']['category'] == 'Durian Si Mantap') ? 'selected' : ''; ?>>Durian Si Mantap</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="productImage" class="form-label">Foto Produk</label>
@@ -61,6 +75,6 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
-    <!-- [ Main Content ] end -->
+<!-- [ Main Content ] end -->
 
 <?= $this->endSection(); ?>

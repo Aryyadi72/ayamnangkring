@@ -47,9 +47,9 @@ class ProdukController extends BaseController
 
         $validationRules = [
             'name' => 'required',
-            'qty' => 'required|numeric',
             'price' => 'required|numeric',
-            'image' => 'uploaded[image]|max_size[image,4096]|is_image[image]',
+            // 'image' => 'uploaded[image]|max_size[image,4096]|is_image[image]',
+            'category' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
@@ -63,12 +63,14 @@ class ProdukController extends BaseController
 
             $dataToAdd = [
                 'name' => $this->request->getPost('name'),
-                'qty' => $this->request->getPost('qty'),
+                'category' => $this->request->getPost('category'),
                 'price' => $this->request->getPost('price'),
-                'image' => isset($imageName) ? $imageName : null,
+                'image' => isset ($imageName) ? $imageName : null,
                 'created_at' => date('Y-m-d'),
                 'updated_at' => date('Y-m-d'),
             ];
+
+            // dd($dataToAdd);
 
             $result = $produk->insert($dataToAdd);
 
@@ -90,7 +92,6 @@ class ProdukController extends BaseController
         $model = new ProdukModel();
         $data['product'] = $model->getProductById($id);
         $title['title'] = "Edit - Produk";
-
         return view('pages/produk/edit', ['title' => $title, 'data' => $data]);
     }
 
@@ -100,34 +101,39 @@ class ProdukController extends BaseController
 
         $produk = new ProdukModel();
 
-        $validationRules = [
-            'name' => 'required',
-            'qty' => 'required|numeric',
-            'price' => 'required|numeric',
+        $nameProduk = $this->request->getPost('name');
+        $priceProduk = $this->request->getPost('price');
+        $categoryProduk = $this->request->getPost('category');
+        $imageProduk = $this->request->getFile('image');
+
+        $updatedData = [
+            'name' => $nameProduk,
+            'price' => $priceProduk,
+            'category' => $categoryProduk,
         ];
 
-        if ($this->validate($validationRules)) {
-            $dataToUpdate = [
-                'name' => $this->request->getPost('name'),
-                'qty' => $this->request->getPost('qty'),
-                'price' => $this->request->getPost('price'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ];
+        // Check if file is uploaded
+        if ($imageProduk !== null) {
+            if ($imageProduk->isValid() && !$imageProduk->hasMoved()) {
+                $filename = $imageProduk->getRandomName();
+                $imageProduk->move(ROOTPATH . 'public/uploads/produk', $filename);
 
-            $result = $produk->update($id, $dataToUpdate);
-
-            if ($result) {
-                session()->setFlashdata("success", "Produk berhasil diupdate!");
-                return redirect()->to(base_url('produk/produk-table'));
-            } else {
-                session()->setFlashdata("error", "Data gagal diupdate.");
-                return redirect()->back();
+                // Add image filename to updated data
+                $updatedData['image'] = $filename;
             }
+        }
+
+        $result = $produk->update($id, $updatedData);
+
+        if ($result) {
+            session()->setFlashdata("success", "Berhasil diupdate!");
+            return redirect()->to(base_url('produk/produk-table'));
         } else {
             session()->setFlashdata("error", "Data gagal diupdate.");
             return redirect()->back();
         }
     }
+
 
     public function delete($id)
     {

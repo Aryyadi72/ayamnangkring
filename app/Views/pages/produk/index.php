@@ -63,12 +63,17 @@
                                             <?= $data['category'] ?>
                                         </td>
                                         <td>
-                                            <?= $data['price'] ?>
+                                            <?= "Rp " . number_format($data['price'], 0, ',', '.') ?>
                                         </td>
                                         <td>
-                                            <?= $data['image'] ?>
+                                            <?= $data['image'] !== null ? $data['image'] : "No Image" ?>
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <a href="<?= base_url('/produk/edit/' . $data['id']) ?>"
+                                                class="btn btn-warning"><i class="ti ti-pencil"></i></a>
+                                            <a href="<?= base_url('/produk/delete/' . $data['id']) ?>"
+                                                class="btn btn-danger"><i class="ti ti-trash"></i></a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
