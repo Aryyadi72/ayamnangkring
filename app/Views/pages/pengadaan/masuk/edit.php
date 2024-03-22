@@ -47,6 +47,13 @@
                                     value="<?= $pengadaanMasuk['pengadaanmasuk']['jumlah'] ?>">
                             </div>
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Harga</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="harga"
+                                    value="<?= "Rp " . number_format($pengadaanMasuk['pengadaanmasuk']['harga'], 0, ',', '.') ?>"
+                                    onkeyup="formatHarga(this)" required>
+                            </div>
+                            <div class="mb-3">
                                 <input type="hidden" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="status"
                                     value="<?= $pengadaanMasuk['pengadaanmasuk']['status'] ?>">
@@ -70,7 +77,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Tanggal Masuk</label>
-                                <input type="date" class="form-control" id="exampleInputEmail1"
+                                <input type="datetime-local" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="tanggal_masuk"
                                     value="<?= $pengadaanMasuk['pengadaanmasuk']['tanggal_masuk'] ?>">
                             </div>
@@ -86,5 +93,23 @@
     </div>
 </div>
 <!-- [ Main Content ] end -->
+
+<script>
+    function formatHarga(input) {
+        var hargaInput = input;
+        var harga = hargaInput.value.replace(/\D/g, '');
+        var formattedHarga = "Rp. " + formatRupiah(harga);
+
+        hargaInput.value = formattedHarga;
+        hargaInput.setAttribute('data-value', harga);
+    }
+
+    function formatRupiah(angka) {
+        var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return ribuan;
+    }
+</script>
 
 <?= $this->endSection(); ?>

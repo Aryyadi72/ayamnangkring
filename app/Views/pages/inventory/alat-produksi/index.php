@@ -41,10 +41,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode</th>
                                     <th>Gambar</th>
                                     <th>Alat</th>
                                     <th>Tanggal</th>
+                                    <th>Jam</th>
                                     <th>Qty</th>
+                                    <th>Harga</th>
                                     <th>Satuan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -58,6 +61,9 @@
                                     <tr>
                                         <td>
                                             <?= $no++ ?>
+                                        </td>
+                                        <td>
+                                            <?= $alat['kode'] ?>
                                         </td>
                                         <td>
                                             <?php if (!empty($alat['image'])): ?>
@@ -74,7 +80,13 @@
                                             <?= \Carbon\Carbon::parse($alat['created_at'])->format('d-m-Y') ?>
                                         </td>
                                         <td>
+                                            <?= \Carbon\Carbon::parse($alat['created_at'])->format('H:i:s') ?>
+                                        </td>
+                                        <td>
                                             <?= $alat['qty'] ?>
+                                        </td>
+                                        <td>
+                                            <?= "Rp " . number_format($alat['harga'], 0, ',', '.') ?>
                                         </td>
                                         <td>
                                             <?= $alat['satuan'] ?>

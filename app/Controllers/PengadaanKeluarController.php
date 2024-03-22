@@ -141,7 +141,6 @@ class PengadaanKeluarController extends BaseController
         $validationRules = [
             'id_pengadaan_masuk' => 'required|integer',
             'jumlah' => 'required|integer',
-            'tanggal_keluar' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
@@ -174,7 +173,7 @@ class PengadaanKeluarController extends BaseController
                     $dataToAdd = [
                         'id_pengadaan_masuk' => $id_pengadaan_masuk,
                         'jumlah' => $jumlah_keluar,
-                        'tanggal_keluar' => $this->request->getPost('tanggal_keluar'),
+                        'tanggal_keluar' => date('Y-m-d H:i:s'),
                         'created_at' => date('Y-m-d'),
                         'updated_at' => date('Y-m-d'),
                     ];

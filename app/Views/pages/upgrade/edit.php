@@ -33,6 +33,11 @@
                     <div class="card-body">
                         <form action="<?= site_url('/upgrade/update/' . $upgrade['upgrade']['id']) ?>" method="POST">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Kode Barang</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="kode" value="<?= $upgrade['upgrade']['kode'] ?>">
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="nama" value="<?= $upgrade['upgrade']['nama'] ?>">
@@ -47,7 +52,7 @@
                                 <label for="exampleInputEmail1" class="form-label">Harga</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="harga" onkeyup="formatHarga(this)"
-                                    value="<?= $upgrade['upgrade']['harga'] ?>">
+                                    value="<?= "Rp " . number_format($upgrade['upgrade']['harga'], 0, ',', '.') ?>">
                             </div>
                             <a href="<?= base_url('/upgrade') ?>" class="btn btn-dark">Kembali</a>
                             <button type="submit" class="btn btn-secondary">Submit</button>

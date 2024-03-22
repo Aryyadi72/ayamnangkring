@@ -50,6 +50,7 @@
                                         <th>Jenis</th>
                                         <th>Kondisi</th>
                                         <th>Tanggal Keluar</th>
+                                        <th>Jam Keluar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,6 +86,9 @@
                                             </td>
                                             <td>
                                                 <?= \Carbon\Carbon::parse($pk['tanggal_keluar'])->format('d/m/Y') ?>
+                                            </td>
+                                            <td>
+                                                <?= \Carbon\Carbon::parse($pk['tanggal_keluar'])->format('H:i:s') ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

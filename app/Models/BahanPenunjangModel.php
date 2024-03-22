@@ -13,6 +13,7 @@ class BahanPenunjangModel extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
+        'kode',
         'nama',
         'qty',
         'satuan',
@@ -31,11 +32,7 @@ class BahanPenunjangModel extends Model
 
     // Validation
     protected $validationRules = [
-        'nama' => 'required|max_length[255]',
-        'qty' => 'required|integer',
-        'satuan' => 'required|in_list[PCS,CUP,PACK]',
-        'kategori' => 'required|in_list[HABIS PAKAI,SEMI PERMANEN,PERMANEN]',
-        'harga' => 'required|numeric',
+
     ];
 
     protected $validationMessages = [];
@@ -56,5 +53,12 @@ class BahanPenunjangModel extends Model
     public function getBahanPenunjangById($id)
     {
         return $this->find($id);
+    }
+
+    public function getFilteredData($start_periode, $end_periode)
+    {
+        return $this->where('created_at >=', $start_periode)
+            ->where('created_at <=', $end_periode)
+            ->findAll();
     }
 }

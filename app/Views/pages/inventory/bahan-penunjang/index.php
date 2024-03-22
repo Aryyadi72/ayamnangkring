@@ -41,6 +41,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
                                     <th>Qty</th>
@@ -59,6 +60,9 @@
                                             <?= $no++ ?>
                                         </td>
                                         <td>
+                                            <?= $bahan['kode'] ?>
+                                        </td>
+                                        <td>
                                             <?= $bahan['nama'] ?>
                                         </td>
                                         <td>
@@ -71,7 +75,7 @@
                                             <?= $bahan['satuan'] ?>
                                         </td>
                                         <td>
-                                            <?= $bahan['harga'] ?>
+                                            <?= "Rp " . number_format($bahan['harga'], 0, ',', '.') ?>
                                         </td>
                                         <td>
                                             <a href="<?= base_url('/bahan-penunjang/edit/' . $bahan['id']) ?>"

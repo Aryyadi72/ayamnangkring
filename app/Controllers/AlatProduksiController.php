@@ -26,7 +26,7 @@ class AlatProduksiController extends BaseController
     {
         $title['title'] = "Data Alat Produksi - Alat Produksi";
         $alatProduksiModel = new AlatProduksiModel();
-        $alatProduksi['alat'] = $alatProduksiModel->findAll();
+        $alatProduksi['alat'] = $alatProduksiModel->orderBy('created_at', 'DESC')->findAll();
         return view('pages/inventory/alat-produksi/index', ['title' => $title, 'alatProduksi' => $alatProduksi]);
     }
 
@@ -38,17 +38,28 @@ class AlatProduksiController extends BaseController
 
     public function store()
     {
-        $data['title'] = 'Tambah Alat Produksi';
-
         $alatProduksiModel = new AlatProduksiModel();
 
+        $kode = $this->request->getPost('kode');
+
+        $existingData = $alatProduksiModel->where('kode', $kode)->first();
+        if ($existingData) {
+            session()->setFlashdata("error", "Data dengan kode yang sama sudah ada dalam database!!!");
+            return redirect()->back();
+        }
+
+        $harga = $this->request->getPost('harga');
+        $harga_formatted = str_replace('Rp. ', '', $harga);
+        $harga_formatted1 = str_replace('.', '', $harga_formatted);
+
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'image' => 'uploaded[image]|max_size[image,4096]|is_image[image]',
             'qty' => 'required|integer',
             'satuan' => 'required|in_list[PCS,UNIT,BUAH]',
             'status' => 'required|in_list[LAYAK PAKAI,TIDAK LAYAK,RUSAK]',
-            'harga' => 'required|numeric',
+            'harga' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
@@ -61,11 +72,12 @@ class AlatProduksiController extends BaseController
             }
 
             $dataToAdd = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'qty' => $this->request->getPost('qty'),
-                'harga' => $this->request->getPost('harga'),
+                'harga' => $harga_formatted1,
                 'image' => isset($imageName) ? $imageName : null,
-                'created_at' => date('Y-m-d'),
+                'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d'),
             ];
 
@@ -96,7 +108,13 @@ class AlatProduksiController extends BaseController
     {
         $alatProduksiModel = new AlatProduksiModel();
 
+        $harga = $this->request->getPost('harga');
+        $harga_formatted = str_replace('Rp. ', '', $harga);
+        $harga_formatted1 = str_replace('.', '', $harga_formatted);
+
         $id = $this->request->getPost('id');
+        $kodeAlatProduksi = $this->request->getPost('kode');
+        $hargaAlatProduksi = $harga_formatted1;
         $namaAlatProduksi = $this->request->getPost('nama');
         $qtyAlatProduksi = $this->request->getPost('qty');
         $satuanAlatProduksi = $this->request->getPost('satuan');
@@ -109,16 +127,20 @@ class AlatProduksiController extends BaseController
             $imageAlatProduksi->move(ROOTPATH . 'public/uploads/alat_produksi', $filename);
 
             $updatedData = [
+                'kode' => $kodeAlatProduksi,
                 'nama' => $namaAlatProduksi,
                 'qty' => $qtyAlatProduksi,
+                'harga' => $hargaAlatProduksi,
                 'satuan' => $satuanAlatProduksi,
                 'status' => $statusAlatProduksi,
                 'image' => $filename,
             ];
         } else {
             $updatedData = [
+                'kode' => $kodeAlatProduksi,
                 'nama' => $namaAlatProduksi,
                 'qty' => $qtyAlatProduksi,
+                'harga' => $hargaAlatProduksi,
                 'satuan' => $satuanAlatProduksi,
                 'status' => $statusAlatProduksi,
             ];

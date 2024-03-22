@@ -33,6 +33,11 @@
                     <div class="card-body">
                         <form action="<?= site_url('/pemeliharaan/store') ?>" method="POST">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Kode Barang</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="kode" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="nama" required>

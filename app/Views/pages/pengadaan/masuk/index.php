@@ -57,7 +57,9 @@
                                     <th>Status</th>
                                     <th>Jenis</th>
                                     <th>Kondisi</th>
+                                    <th>Harga</th>
                                     <th>Tanggal Masuk</th>
+                                    <th>Jam Masuk</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -103,7 +105,13 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
+                                            <?= "Rp " . number_format($pm['harga'], 0, ',', '.') ?>
+                                        </td>
+                                        <td>
                                             <?= \Carbon\Carbon::parse($pm['tanggal_masuk'])->format('d/m/Y') ?>
+                                        </td>
+                                        <td>
+                                            <?= \Carbon\Carbon::parse($pm['tanggal_masuk'])->format('H:i:s') ?>
                                         </td>
                                         <td>
                                             <?php if ($pm['status'] == 'Sisa' || $pm['status'] == 'Habis'): ?>

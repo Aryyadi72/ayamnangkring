@@ -7,36 +7,36 @@ use App\Models\TransactionsModel;
 
 class TransactionDetailsModel extends Model
 {
-    protected $table            = 'transaction_details';
-    protected $primaryKey       = 'id';
+    protected $table = 'transaction_details';
+    protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['transaction_id', 'product_id', 'quantity', 'price'];
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
+    protected $allowedFields = ['transaction_id', 'product_id', 'quantity', 'price'];
 
     // Dates
     protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_at';
 
-    protected $validationRules    = [];
+    protected $validationRules = [];
     protected $validationMessages = [];
-    protected $skipValidation     = true;
+    protected $skipValidation = true;
     protected $cleanValidationRules = true;
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeFind = [];
+    protected $afterFind = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
 
     public function transaction()
     {
@@ -52,4 +52,12 @@ class TransactionDetailsModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    // public function getFilteredDataPrint($start_periode, $end_periode)
+    // {
+    //     return $this->db->table('transactions')
+    //         ->where('created_at >=', $start_periode)
+    //         ->where('created_at <=', $end_periode)
+    //         ->findAll();
+    // }
 }

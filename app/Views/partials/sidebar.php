@@ -45,15 +45,20 @@
                     <a href="<?= base_url('/transaksi') ?>" class="pc-link"><span class="pc-micon"><i
                                 class="ti ti-report-money"></i></span><span class="pc-mtext">Transaksi</span></a>
                 </li>
+                <!-- <li class="pc-item">
+                    <a href="<?= base_url('/transaksi/filter') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-cash-banknote"></i></span><span class="pc-mtext">Summary
+                            Transaksi</span></a>
+                </li> -->
                 <!-- Transaksi End -->
 
                 <!-- Bahan Baku -->
-                <li class="pc-item pc-caption">
+                <!-- <li class="pc-item pc-caption">
                     <label>Bahan Baku</label>
                     <i class="ti ti-meat"></i>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-sausage"></i></span><span
+                    <a href="#" class="pc-link"><span class="pc-micon"><i class="ti ti-sausage"></i></span><span
                             class="pc-mtext">Pengadaan Harian</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
@@ -62,6 +67,21 @@
                         <li class="pc-item"><a class="pc-link" href="<?= base_url('/pengadaan-keluar') ?>">Keluar</a>
                         </li>
                     </ul>
+                </li> -->
+                <!-- Bahan Baku End -->
+
+                <!-- Bahan Baku -->
+                <li class="pc-item pc-caption">
+                    <label>Bahan Baku</label>
+                    <i class="ti ti-meat"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('/pengadaan-masuk') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-cheese"></i></span><span class="pc-mtext">Pengadaan Masuk</span></a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('/pengadaan-keluar') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-sausage"></i></span><span class="pc-mtext">Pengadaan Keluar</span></a>
                 </li>
                 <!-- Bahan Baku End -->
 
@@ -94,10 +114,23 @@
                     <a href="<?= base_url('/salary/filter') ?>" class="pc-link"><span class="pc-micon"><i
                                 class="ti ti-wallet"></i></span><span class="pc-mtext">Perhitungan Gaji</span></a>
                 </li>
-                <!-- <li class="pc-item">
-                    <a href="<?= base_url('/salary/filter-pdf') ?>" class="pc-link"><span class="pc-micon"><i
-                                class="ti ti-vocabulary"></i></span><span class="pc-mtext">Slip Gaji</span></a>
-                </li> -->
+                <!-- SDM End -->
+
+                <!-- SDM -->
+                <li class="pc-item pc-caption">
+                    <label>Summary</label>
+                    <i class="ti ti-users"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('/transaksi/filter') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-cash-banknote"></i></span><span class="pc-mtext">Summary
+                            Transaksi</span></a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('/summary-harian') ?>" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-indent-decrease"></i></span><span class="pc-mtext">Summary
+                            Rekap Harian</span></a>
+                </li>
                 <!-- SDM End -->
 
                 <!-- Maintenance -->

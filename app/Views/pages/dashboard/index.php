@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <span class="text-white d-block f-34 f-w-500 my-2">1350 <i
+                                <span class="text-white d-block f-34 f-w-500 my-2"><?= $quantity ?> <i
                                         class="ti ti-arrow-up-right-circle opacity-50"></i></span>
                             </div>
                             <div class="col-auto">

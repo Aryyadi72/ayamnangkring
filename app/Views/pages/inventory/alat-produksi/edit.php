@@ -35,6 +35,12 @@
                             method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="<?= $alatProduksi['alat']['id'] ?>">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Kode Alat</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="kode"
+                                    value="<?= $alatProduksi['alat']['kode'] ?>">
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Alat</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="nama"
@@ -65,9 +71,9 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Harga</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" name="harga"
-                                    value="<?= $alatProduksi['alat']['harga'] ?>">
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="harga" onkeyup="formatHarga(this)"
+                                    value="<?= "Rp " . number_format($alatProduksi['alat']['harga'], 0, ',', '.') ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Gambar</label>
@@ -93,5 +99,23 @@
     </div>
 </div>
 <!-- [ Main Content ] end -->
+
+<script>
+    function formatHarga(input) {
+        var hargaInput = input;
+        var harga = hargaInput.value.replace(/\D/g, '');
+        var formattedHarga = "Rp. " + formatRupiah(harga);
+
+        hargaInput.value = formattedHarga;
+        hargaInput.setAttribute('data-value', harga);
+    }
+
+    function formatRupiah(angka) {
+        var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return ribuan;
+    }
+</script>
 
 <?= $this->endSection(); ?>

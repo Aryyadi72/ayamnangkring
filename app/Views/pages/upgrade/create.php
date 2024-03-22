@@ -14,8 +14,8 @@
                             <h5 class="m-b-10">Upgrade</h5>
                         </div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Upgrade - Tambah</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Tambah Upgrade</li>
                         </ul>
                     </div>
                 </div>
@@ -32,6 +32,11 @@
                     </div>
                     <div class="card-body">
                         <form action="<?= site_url('/upgrade/store') ?>" method="POST">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Kode Barang</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="kode" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"

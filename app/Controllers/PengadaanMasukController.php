@@ -27,7 +27,7 @@ class PengadaanMasukController extends BaseController
     {
         $title['title'] = "Data Bahan Baku Masuk - Pengadaan Harian";
         $PengadaanMasukModel = new PengadaanMasukModel;
-        $PengadaanMasuk['pengadaanmasuk'] = $PengadaanMasukModel->findAll();
+        $PengadaanMasuk['pengadaanmasuk'] = $PengadaanMasukModel->orderBy('tanggal_masuk', 'DESC')->findAll();
         return view('pages/pengadaan/masuk/index', ['title' => $title, 'PengadaanMasuk' => $PengadaanMasuk]);
     }
 
@@ -41,6 +41,10 @@ class PengadaanMasukController extends BaseController
     {
         $pengadaanMasukModel = new PengadaanMasukModel();
 
+        $harga = $this->request->getPost('harga');
+        $harga_formatted = str_replace('Rp. ', '', $harga);
+        $harga_formatted1 = str_replace('.', '', $harga_formatted);
+
         $validationRules = [
             'nama' => 'required|max_length[255]',
             'jumlah' => 'required|integer',
@@ -48,6 +52,7 @@ class PengadaanMasukController extends BaseController
             'jenis' => 'required|in_list[Bahan Baku, Bahan Habis Pakai]',
             'kondisi' => 'required|in_list[Rusak, Bagus]',
             'tanggal_masuk' => 'required',
+            'harga' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
@@ -57,6 +62,7 @@ class PengadaanMasukController extends BaseController
                 'status' => $this->request->getPost('status'),
                 'jenis' => $this->request->getPost('jenis'),
                 'kondisi' => $this->request->getPost('kondisi'),
+                'harga' => $harga_formatted1,
                 'tanggal_masuk' => $this->request->getPost('tanggal_masuk'),
                 'created_at' => date('Y-m-d'),
                 'updated_at' => date('Y-m-d'),
@@ -89,6 +95,10 @@ class PengadaanMasukController extends BaseController
     {
         $pengadaanMasukModel = new PengadaanMasukModel();
 
+        $harga = $this->request->getPost('harga');
+        $harga_formatted = str_replace('Rp. ', '', $harga);
+        $harga_formatted1 = str_replace('.', '', $harga_formatted);
+
         $validationRules = [
             'nama' => 'required|max_length[255]',
             'jumlah' => 'required|integer',
@@ -96,6 +106,7 @@ class PengadaanMasukController extends BaseController
             'jenis' => 'required|in_list[Bahan Baku, Bahan Habis Pakai]',
             'kondisi' => 'required|in_list[Rusak, Bagus]',
             'tanggal_masuk' => 'required',
+            'harga' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
@@ -111,6 +122,7 @@ class PengadaanMasukController extends BaseController
                 'status' => $this->request->getPost('status'),
                 'jenis' => $this->request->getPost('jenis'),
                 'kondisi' => $this->request->getPost('kondisi'),
+                'harga' => $harga_formatted1,
                 'tanggal_masuk' => $this->request->getPost('tanggal_masuk'),
                 'updated_at' => date('Y-m-d'),
             ];

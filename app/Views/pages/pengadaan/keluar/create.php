@@ -48,11 +48,6 @@
                                     aria-describedby="emailHelp" name="id_pengadaan_masuk"
                                     value="<?= $PengadaanKeluar['pengadaankeluar']['id'] ?>">
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Tanggal Keluar</label>
-                                <input type="date" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" name="tanggal_keluar" required>
-                            </div>
                             <a href="<?= base_url('/pengadaan-masuk') ?>" class="btn btn-dark">Kembali</a>
                             <button type="submit" class="btn btn-secondary">Submit</button>
                         </form>

@@ -26,11 +26,14 @@ $routes->get('/transaksi', 'TransaksiController::index');
 $routes->get('/transaksi-produk/(:num)', 'TransaksiController::indexGallery/$1');
 $routes->post('/transaksi-keranjang', 'TransaksiController::storeToCart');
 $routes->post('/transaksi-simpan', 'TransaksiController::updateCart');
+$routes->get('/transaksi-filter', 'TransaksiController::showFilteredData');
+
 
 $routes->get('/transaksi-hapus-item/(:num)', 'TransaksiController::deleteFromCart/$1');
 $routes->get('/payment-detail/(:num)', 'TransaksiController::payment_process/$1');
 $routes->post('/checkout', 'TransaksiController::checkout');
 $routes->get('/invoice/(:num)', 'TransaksiController::invoice_view/$1');
+$routes->get('/print/(:num)', 'TransaksiController::print_view/$1');
 
 // $routes->get('TransactionController/indexGallery/', );
 
@@ -68,6 +71,8 @@ $routes->group('transaksi', function ($routes) {
     $routes->get('edit/(:num)', 'TransaksiController::edit/$1');
     $routes->post('update/(:num)', 'TransaksiController::update/$1');
     $routes->get('delete/(:num)', 'TransaksiController::delete/$1');
+    $routes->get('filter', 'TransaksiController::filter');
+    $routes->post('filter', 'TransaksiController::filter_proses');
 });
 
 $routes->group('alat-produksi', function ($routes) {
@@ -147,6 +152,8 @@ $routes->group('pemeliharaan', function ($routes) {
     $routes->get('edit/(:num)', 'PemeliharaanController::edit/$1');
     $routes->post('update/(:num)', 'PemeliharaanController::update/$1');
     $routes->get('delete/(:num)', 'PemeliharaanController::delete/$1');
+    $routes->get('filter', 'PemeliharaanController::filter');
+    $routes->post('filter', 'PemeliharaanController::filter_proses');
 });
 
 $routes->group('upgrade', function ($routes) {
@@ -156,4 +163,16 @@ $routes->group('upgrade', function ($routes) {
     $routes->get('edit/(:num)', 'UpgradeController::edit/$1');
     $routes->post('update/(:num)', 'UpgradeController::update/$1');
     $routes->get('delete/(:num)', 'UpgradeController::delete/$1');
+    $routes->get('filter', 'UpgradeController::filter');
+    $routes->post('filter', 'UpgradeController::filter_proses');
+});
+
+$routes->group('summary-harian', function ($routes) {
+    $routes->get('/', 'SummaryRekapController::index');
+    $routes->get('before_create', 'SummaryRekapController::before_create');
+    $routes->post('create', 'SummaryRekapController::create');
+    $routes->post('store', 'SummaryRekapController::store');
+    $routes->get('detail/(:num)', 'SummaryRekapController::detail/$1');
+    $routes->get('filter', 'SummaryRekapController::filter');
+    $routes->post('filter', 'SummaryRekapController::filter_proses');
 });

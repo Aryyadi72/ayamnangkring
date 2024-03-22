@@ -34,6 +34,12 @@
                         <form action="<?= site_url('/pemeliharaan/update/' . $pemeliharaan['pemeliharaan']['id']) ?>"
                             method="POST">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Kode Barang</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="kode"
+                                    value="<?= $pemeliharaan['pemeliharaan']['kode'] ?>">
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama Barang</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="nama"
@@ -49,7 +55,7 @@
                                 <label for="exampleInputEmail1" class="form-label">Harga</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="harga" onkeyup="formatHarga(this)"
-                                    value="<?= $pemeliharaan['pemeliharaan']['harga'] ?>">
+                                    value="<?= "Rp " . number_format($pemeliharaan['pemeliharaan']['harga'], 0, ',', '.') ?>">
                             </div>
                             <a href="<?= base_url('/pemeliharaan') ?>" class="btn btn-dark">Kembali</a>
                             <button type="submit" class="btn btn-secondary">Submit</button>

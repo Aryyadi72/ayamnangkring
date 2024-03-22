@@ -19,27 +19,25 @@
     <!-- [Favicon] icon -->
     <link rel="icon" href="assets/images/logo_ayam_nangkring.jpg" type="image/x-icon" />
     <!-- [Google Font] Family -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-        id="main-font-link" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/css2.css') ?>">
     <!-- [Tabler Icons] https://tablericons.com -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/tabler-icons.min.css') ?>" />
     <!-- [Material Icons] https://fonts.google.com/icons -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/material.css') ?>" />
     <!-- Add these links to your HTML -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap_an.min.css') ?>">
+    <script src="<?= base_url('assets/js/jquery-3.5.1.slim.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/popper.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" id="main-style-link" />
     <link rel="stylesheet" href="<?= base_url('assets/css/style-preset.css') ?>" id="preset-style-link" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-...." crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/dataTables.bootstrap5.min.css') ?>">
+    <script src="<?= base_url('assets/js/jquery-3.7.0.js') ?>"></script>
+    <script src="<?= base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/dataTables.bootstrap5.min.js') ?>"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/css/all.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css') ?>">
     <style>
         .opacity {
             opacity: 0.7;

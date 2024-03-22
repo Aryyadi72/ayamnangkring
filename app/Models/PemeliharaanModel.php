@@ -13,6 +13,7 @@ class PemeliharaanModel extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
+        'kode',
         'nama',
         'jumlah',
         'harga',
@@ -49,5 +50,12 @@ class PemeliharaanModel extends Model
     public function getPemeliharaanById($id)
     {
         return $this->find($id);
+    }
+
+    public function getFilteredData($start_periode, $end_periode)
+    {
+        return $this->where('created_at >=', $start_periode)
+            ->where('created_at <=', $end_periode)
+            ->findAll();
     }
 }

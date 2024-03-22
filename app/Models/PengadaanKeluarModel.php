@@ -55,6 +55,7 @@ class PengadaanKeluarModel extends Model
     {
         return $this->select('pengadaan_keluar.jumlah as jumlah_keluar, pengadaan_keluar.tanggal_keluar as tanggal_keluar, pengadaan_masuk.*')
             ->join('pengadaan_masuk', 'pengadaan_masuk.id = pengadaan_keluar.id_pengadaan_masuk')
+            ->orderBy('pengadaan_keluar.tanggal_keluar', 'DESC')
             ->findAll();
     }
 

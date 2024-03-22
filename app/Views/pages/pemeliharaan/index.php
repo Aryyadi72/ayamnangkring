@@ -11,12 +11,11 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Sample Page</h5>
+                            <h5 class="m-b-10">Pemeliharaan</h5>
                         </div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../navigation/index.html">Home</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Sample Page</li>
+                            <li class="breadcrumb-item" aria-current="page">List Pemeliharaan</li>
                         </ul>
                     </div>
                 </div>
@@ -35,17 +34,28 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>List Pemeliharaan</h5>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5>List Pemeliharaan</h5>
+                            </div>
+                            <div class="col-auto">
+                                <a href="<?= base_url('/pemeliharaan/filter') ?>" class="btn btn-warning">
+                                    <i class="fa fa-filter"></i> Filter
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table id="pemeliharaan" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode Barang</th>
                                     <th>Nama</th>
                                     <th>Jumlah</th>
                                     <th>harga</th>
                                     <th>Tanggal</th>
+                                    <th>Jam</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -58,6 +68,9 @@
                                             <?= $no++ ?>
                                         </td>
                                         <td>
+                                            <?= $pemeliharaan['kode'] ?>
+                                        </td>
+                                        <td>
                                             <?= $pemeliharaan['nama'] ?>
                                         </td>
                                         <td>
@@ -68,6 +81,9 @@
                                         </td>
                                         <td>
                                             <?= \Carbon\Carbon::parse($pemeliharaan['created_at'])->format('d/m/Y') ?>
+                                        </td>
+                                        <td>
+                                            <?= \Carbon\Carbon::parse($pemeliharaan['created_at'])->format('H:i:s') ?>
                                         </td>
                                         <td>
                                             <a href="<?= base_url('/pemeliharaan/edit/' . $pemeliharaan['id']) ?>"

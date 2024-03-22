@@ -27,7 +27,7 @@ class PemeliharaanController extends BaseController
     {
         $title['title'] = "Data Pemeliharaan - Pemeliharaan";
         $pemeliharaanModel = new PemeliharaanModel;
-        $pemeliharaan['pemeliharaan'] = $pemeliharaanModel->findAll();
+        $pemeliharaan['pemeliharaan'] = $pemeliharaanModel->orderBy('created_at', 'DESC')->findAll();
         return view('pages/pemeliharaan/index', ['title' => $title, 'pemeliharaan' => $pemeliharaan]);
     }
 
@@ -41,11 +41,20 @@ class PemeliharaanController extends BaseController
     {
         $pemeliharaanModel = new PemeliharaanModel();
 
+        $kode = $this->request->getPost('kode');
+
+        $existingData = $pemeliharaanModel->where('kode', $kode)->first();
+        if ($existingData) {
+            session()->setFlashdata("error", "Data dengan kode yang sama sudah ada dalam database!!!");
+            return redirect()->back();
+        }
+
         $harga = $this->request->getPost('harga');
         $harga_formatted = str_replace('Rp. ', '', $harga);
         $harga_formatted1 = str_replace('.', '', $harga_formatted);
 
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'harga' => 'required',
             'jumlah' => 'required|numeric',
@@ -53,10 +62,11 @@ class PemeliharaanController extends BaseController
 
         if ($this->validate($validationRules)) {
             $dataToAdd = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'jumlah' => $this->request->getPost('jumlah'),
                 'harga' => $harga_formatted1,
-                'created_at' => date('Y-m-d'),
+                'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d'),
             ];
 
@@ -92,6 +102,7 @@ class PemeliharaanController extends BaseController
         $harga_formatted1 = str_replace('.', '', $harga_formatted);
 
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'harga' => 'required',
             'jumlah' => 'required|numeric',
@@ -105,6 +116,7 @@ class PemeliharaanController extends BaseController
             }
 
             $dataToUpdate = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'jumlah' => $this->request->getPost('jumlah'),
                 'harga' => $harga_formatted1,
@@ -145,5 +157,25 @@ class PemeliharaanController extends BaseController
             session()->setFlashdata("error", "Data gagal dihapus.");
             return redirect()->back();
         }
+    }
+
+    public function filter()
+    {
+        $title['title'] = "Filter Pemeliharaan - Pemeliharaan";
+        return view('pages/pemeliharaan/filter', ['title' => $title]);
+    }
+
+    public function filter_proses()
+    {
+        $title['title'] = "Data Pemeliharaan - Filter";
+
+        $start_periode = $this->request->getPost('start_periode');
+        $end_periode = $this->request->getPost('end_periode');
+
+        $pemeliharaanModel = new pemeliharaanModel();
+        $pemeliharaan['pemeliharaan'] = $pemeliharaanModel->getFilteredData($start_periode, $end_periode);
+
+        // Tampilkan data pengadaan masuk di view
+        return view('pages/pemeliharaan/filter_result', ['title' => $title, 'pemeliharaan' => $pemeliharaan, 'start_periode' => $start_periode, 'end_periode' => $end_periode]);
     }
 }

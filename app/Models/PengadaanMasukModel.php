@@ -18,6 +18,7 @@ class PengadaanMasukModel extends Model
         'status',
         'jenis',
         'kondisi',
+        'harga',
         'tanggal_masuk',
         'created_at',
         'updated_at',

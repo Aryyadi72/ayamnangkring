@@ -27,7 +27,7 @@ class UpgradeController extends BaseController
     {
         $title['title'] = "Data Upgrade - Upgrade";
         $upgradeModel = new UpgradeModel;
-        $upgrade['upgrade'] = $upgradeModel->findAll();
+        $upgrade['upgrade'] = $upgradeModel->orderBy('created_at', 'DESC')->findAll();
         return view('pages/upgrade/index', ['title' => $title, 'upgrade' => $upgrade]);
     }
 
@@ -41,11 +41,20 @@ class UpgradeController extends BaseController
     {
         $upgardeModel = new UpgradeModel();
 
+        $kode = $this->request->getPost('kode');
+
+        $existingData = $upgardeModel->where('kode', $kode)->first();
+        if ($existingData) {
+            session()->setFlashdata("error", "Data dengan kode yang sama sudah ada dalam database!!!");
+            return redirect()->back();
+        }
+
         $harga = $this->request->getPost('harga');
         $harga_formatted = str_replace('Rp. ', '', $harga);
         $harga_formatted1 = str_replace('.', '', $harga_formatted);
 
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'harga' => 'required',
             'jumlah' => 'required|numeric',
@@ -53,10 +62,11 @@ class UpgradeController extends BaseController
 
         if ($this->validate($validationRules)) {
             $dataToAdd = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'jumlah' => $this->request->getPost('jumlah'),
                 'harga' => $harga_formatted1,
-                'created_at' => date('Y-m-d'),
+                'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d'),
             ];
 
@@ -92,6 +102,7 @@ class UpgradeController extends BaseController
         $harga_formatted1 = str_replace('.', '', $harga_formatted);
 
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'harga' => 'required',
             'jumlah' => 'required|numeric',
@@ -105,6 +116,7 @@ class UpgradeController extends BaseController
             }
 
             $dataToUpdate = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'jumlah' => $this->request->getPost('jumlah'),
                 'harga' => $harga_formatted1,
@@ -145,5 +157,25 @@ class UpgradeController extends BaseController
             session()->setFlashdata("error", "Data gagal dihapus.");
             return redirect()->back();
         }
+    }
+
+    public function filter()
+    {
+        $title['title'] = "Filter Upgrade - Upgrade";
+        return view('pages/upgrade/filter', ['title' => $title]);
+    }
+
+    public function filter_proses()
+    {
+        $title['title'] = "Data Upgrade - Filter";
+
+        $start_periode = $this->request->getPost('start_periode');
+        $end_periode = $this->request->getPost('end_periode');
+
+        $upgradeModel = new upgradeModel();
+        $upgrade['upgrade'] = $upgradeModel->getFilteredData($start_periode, $end_periode);
+
+        // Tampilkan data pengadaan masuk di view
+        return view('pages/upgrade/filter_result', ['title' => $title, 'upgrade' => $upgrade, 'start_periode' => $start_periode, 'end_periode' => $end_periode]);
     }
 }

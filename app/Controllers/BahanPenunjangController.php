@@ -26,7 +26,7 @@ class BahanPenunjangController extends BaseController
     {
         $title['title'] = "Data Bahan Penunjang - Bahan Penunjang";
         $bahanPenunjangModel = new BahanPenunjangModel;
-        $bahanPenunjang['bahan'] = $bahanPenunjangModel->findAll();
+        $bahanPenunjang['bahan'] = $bahanPenunjangModel->orderBy('created_at', 'DESC')->findAll();
         return view('pages/inventory/bahan-penunjang/index', ['title' => $title, 'bahanPenunjang' => $bahanPenunjang]);
     }
 
@@ -40,22 +40,36 @@ class BahanPenunjangController extends BaseController
     {
         $bahanPenunjangModel = new BahanPenunjangModel();
 
+        $kode = $this->request->getPost('kode');
+
+        $existingData = $bahanPenunjangModel->where('kode', $kode)->first();
+        if ($existingData) {
+            session()->setFlashdata("error", "Data dengan kode yang sama sudah ada dalam database!!!");
+            return redirect()->back();
+        }
+
+        $harga = $this->request->getPost('harga');
+        $harga_formatted = str_replace('Rp. ', '', $harga);
+        $harga_formatted1 = str_replace('.', '', $harga_formatted);
+
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'qty' => 'required|integer',
             'satuan' => 'required|in_list[PCS,CUP,PACK]',
             'kategori' => 'required|in_list[HABIS PAKAI,SEMI PERMANEN,PERMANEN]',
-            'harga' => 'required|numeric',
+            'harga' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
             $dataToAdd = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'qty' => $this->request->getPost('qty'),
                 'satuan' => $this->request->getPost('satuan'),
                 'kategori' => $this->request->getPost('kategori'),
-                'harga' => $this->request->getPost('harga'),
-                'created_at' => date('Y-m-d'),
+                'harga' => $harga_formatted1,
+                'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d'),
             ];
 
@@ -86,12 +100,17 @@ class BahanPenunjangController extends BaseController
     {
         $bahanPenunjangModel = new BahanPenunjangModel();
 
+        $harga = $this->request->getPost('harga');
+        $harga_formatted = str_replace('Rp. ', '', $harga);
+        $harga_formatted1 = str_replace('.', '', $harga_formatted);
+
         $validationRules = [
+            'kode' => 'required|max_length[255]',
             'nama' => 'required|max_length[255]',
             'qty' => 'required|integer',
             'satuan' => 'required|in_list[PCS,CUP,PACK]',
             'kategori' => 'required|in_list[HABIS PAKAI,SEMI PERMANEN,PERMANEN]',
-            'harga' => 'required|numeric',
+            'harga' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
@@ -102,11 +121,12 @@ class BahanPenunjangController extends BaseController
             }
 
             $dataToUpdate = [
+                'kode' => $this->request->getPost('kode'),
                 'nama' => $this->request->getPost('nama'),
                 'qty' => $this->request->getPost('qty'),
                 'satuan' => $this->request->getPost('satuan'),
                 'kategori' => $this->request->getPost('kategori'),
-                'harga' => $this->request->getPost('harga'),
+                'harga' => $harga_formatted1,
                 'updated_at' => date('Y-m-d'),
             ];
 
