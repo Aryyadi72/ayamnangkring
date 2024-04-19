@@ -41,10 +41,10 @@ class CreateAlatProduksi extends Migration
                 'constraint' => '10,2',
             ],
             'created_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
             'updated_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
         ]);
 

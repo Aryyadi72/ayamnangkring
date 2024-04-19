@@ -44,10 +44,10 @@ class CreateEmployeesTable extends Migration
                 'constraint' => 100,
             ],
             'created_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
             'updated_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
         ]);
 

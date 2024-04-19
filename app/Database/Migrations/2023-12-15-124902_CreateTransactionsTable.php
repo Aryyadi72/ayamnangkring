@@ -54,12 +54,10 @@ class CreateTransactionsTable extends Migration
                 'null'       => true,
             ],
             'created_at' => [
-                'type' => 'DATE',
-                'null' => true,
+                'type' => 'DATETIME',
             ],
             'updated_at' => [
-                'type' => 'DATE',
-                'null' => true,
+                'type' => 'DATETIME',
             ],
         ]);
 

@@ -37,10 +37,10 @@ class CreateProductsTable extends Migration
                 'null'       => true,
             ],
             'created_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
             'updated_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
         ]);
 

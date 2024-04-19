@@ -177,8 +177,8 @@ class TransaksiController extends BaseController
                 'customers' => $this->request->getPost('customers'),
                 'status' => $this->request->getPost('status'),
                 'total_price' => $this->request->getPost('total_price'),
-                'created_at' => date('Y-m-d'),
-                'updated_at' => date('Y-m-d'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
 
             $result = $transaksiModel->insert($dataToAdd);
@@ -218,8 +218,8 @@ class TransaksiController extends BaseController
                 'product_id' => $this->request->getPost('product_id'),
                 'quantity' => $this->request->getPost('quantity'),
                 'price' => $this->request->getPost('price'),
-                'created_at' => date('Y-m-d'),
-                'updated_at' => date('Y-m-d'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
 
             $result = $transaksiDetailModel->insert($dataToAdd);
@@ -312,7 +312,7 @@ class TransaksiController extends BaseController
                 $dataToUpdate = [
                     'quantity' => $quantity,
                     'price' => $price,
-                    'updated_at' => date('Y-m-d'),
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ];
 
                 $result = $transaksiDetailModel->update($transactionDetailId, $dataToUpdate);

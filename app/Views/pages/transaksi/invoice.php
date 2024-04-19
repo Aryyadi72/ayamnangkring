@@ -184,10 +184,10 @@
             </div>
             <div class="input-group col-4 mb-3">
                 <button type="button" class="btn btn-sm btn-dark rounded-pill mr-2">
-                    <i class="fa-solid fa-arrow-left"></i> Kembali
+                    <i class="ti ti-arrow-back"></i> Kembali
                 </button>
                <a href="<?= base_url('print/' . $transaction['id']) ?>" class="btn btn-sm rounded-pill btn-primary">
-    <i class="fa-solid fa-print"></i> Print
+    <i class="ti ti-printer"></i> Print
 </a>
 
 

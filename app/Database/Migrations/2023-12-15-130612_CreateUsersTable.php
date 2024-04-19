@@ -30,10 +30,10 @@ class CreateUsersTable extends Migration
                 'constraint' => 255,
             ],
             'created_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
             'updated_at' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
             ],
         ]);
 

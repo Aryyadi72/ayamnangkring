@@ -70,10 +70,10 @@
 
 <div class="input-group col-4 ml-3 mt-4">
 <button type="button" class="btn btn-sm btn-danger rounded-pill mr-2" id="btn-pdf">
-    <i class="fas fa-file-pdf"></i> Print PDF
+    <i class="ti ti-file"></i> Print PDF
 </button>  
 <button type="button" class="btn btn-sm rounded-pill btn-success" id="btn-d">
-    <i class="fas fa-file-excel"></i> Export Excel
+    <i class="ti ti-file"></i> Export Excel
 </button>
 </div>
 <div class="card-body">
@@ -121,13 +121,13 @@
                                 <i class="ti ti-trash"></i> Hapus
                             </a>
                             <a href="<?= base_url('/transaksi-produk/' . $data['id']) ?>" class="btn rounded-pill btn-secondary btn-sm">
-                            <i class="fa-solid fa-cart-shopping"></i> Keranjang
+                            <i class="ti ti-shopping-cart"></i> Keranjang
                             </a>
                             <a href="<?= base_url('/payment-detail/' . $data['id']) ?>" class="btn rounded-pill btn-info btn-sm">
                                 <i class="ti ti-eye"></i> Detail
                             </a>
                             <a href="<?= base_url('/invoice/' . $data['id']) ?>" class="btn rounded-pill btn-primary btn-sm">
-                                <i class="fa-solid fa-print"></i> Print
+                                <i class="ti ti-printer "></i> Print
                             </a>
                         </td>
                     </tr>

@@ -166,9 +166,9 @@ switch ($category) {
                     ?>
                     <td>
                         <div class="input-group">
-                            <button class="btn rounded-pill btn-primary btn-sm" onclick="decrement(<?= $detail['id'] ?>, <?= $product['price'] ?>)"><i class="fas fa-chevron-left"></i></button>
+                            <button class="btn rounded-pill btn-primary btn-sm" onclick="decrement(<?= $detail['id'] ?>, <?= $product['price'] ?>)"><i class="ti ti-arrow-left"></i></button>
                             <p id="jumlah<?= $detail['id'] ?>" class="text-center ml-2 mr-2"><?= $detail['quantity'] ?>x</p>
-                            <button class="btn rounded-pill btn-primary btn-sm" onclick="increment(<?= $detail['id'] ?>, <?= $product['price'] ?>)"><i class="fas fa-chevron-right"></i></button>
+                            <button class="btn rounded-pill btn-primary btn-sm" onclick="increment(<?= $detail['id'] ?>, <?= $product['price'] ?>)"><i class="ti ti-arrow-right"></i></button>
                         </div>
                     </td>
                     <td id="harga<?= $detail['id'] ?>"><?= $totalPrice ?></td>

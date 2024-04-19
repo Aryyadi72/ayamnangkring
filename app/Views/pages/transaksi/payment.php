@@ -148,13 +148,13 @@
             <div class="card-body d-flex justify-content-center">
                 <div class="d-flex flex-row">
                     <button type="button" class="btn btn-secondary btn-lg mr-4 mb-3 opacity payment-btn" id="cateringBtn">
-                        <i class="fas fa-utensils mr-2"></i> Catering
+                        <i class="ti ti-box mr-2"></i> Catering
                     </button>
                     <button type="button" class="btn btn-secondary btn-lg mr-4 mb-3 opacity payment-btn" id="dineinBtn">
-                        <i class="fas fa-coffee mr-2"></i> Dine In
+                        <i class="ti ti-glass mr-2"></i> Dine In
                     </button>
                     <button type="button" class="btn btn-secondary btn-lg mr-4 mb-3 opacity payment-btn" id="takeawayBtn">
-                        <i class="fas fa-shopping-bag mr-2"></i> Take Away
+                        <i class="ti ti-car mr-2"></i> Take Away
                     </button>
                 </div>
             </div>
@@ -177,16 +177,16 @@
             <div class="card-body d-flex justify-content-center">
                 <div class="d-flex flex-row">
                     <button type="button" class="btn btn-success btn-lg mr-4 mb-3 opacity payment-btn" id="cashBtn">
-                        <i class="fas fa-money-bill-wave mr-2"></i> Cash
+                        <i class="ti ti-report-money mr-2"></i> Cash
                     </button>
                     <button type="button" class="btn btn-primary btn-lg mr-4 mb-3 opacity payment-btn" id="nonTunaiBtn">
-                        <i class="fas fa-credit-card mr-2"></i> Non Tunai
+                        <i class="ti ti-credit-card mr-2"></i> Non Tunai
                     </button>
                     <button type="button" class="btn btn-danger btn-lg mr-4 mb-3 opacity payment-btn" id="dpBookingBtn">
-                        <i class="fas fa-book mr-2"></i> DP/Booking
+                        <i class="ti ti-zoom-money mr-2"></i> DP/Booking
                     </button>
                     <button type="button" class="btn btn-warning btn-lg mr-4 mb-3 opacity payment-btn" id="amalSalehBtn">
-                        <i class="fas fa-hand-holding-heart mr-2"></i> Amal Saleh
+                        <i class="ti ti-heart mr-2"></i> Amal Saleh
                     </button>
                 </div>
             </div>
@@ -240,10 +240,10 @@
 
     <div class="input-group col-4 mb-3">
         <button type="button" class="btn btn-sm btn-dark rounded-pill mr-2">
-            <i class="fa-solid fa-arrow-left"></i> Kembali
+            <i class="ti ti-arrow-back"></i> Kembali
         </button>
        <button type="button" class="btn btn-sm rounded-pill btn-success" id="btn-checkout">
-    <i class="fa-solid fa-cart-shopping"></i> Checkout
+    <i class="ti ti-shopping-cart"></i> Checkout
 </button>
 
     </div>
@@ -330,7 +330,7 @@ function updateTotal() {
 }
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
 
 <script>
     $(document).ready(function () {
