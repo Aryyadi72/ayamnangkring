@@ -52,14 +52,15 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div class="mb-3">
-                            <?php $no=1; foreach ($transaction as $index) : ?>
-                    <label for="exampleInputEmail1" class="form-label"><strong>Nama Pelanggan :</strong></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $index['customers'] ?>" readonly>
-                </div>
-                <div class="ml-auto">
-                    <p class="mb-1"><strong>ID Pesanan :</strong> <?= $index['id'] ?></p>
-                    <p class="mb-0"><strong>Tanggal :</strong> <?= $index['created_at'] ?></p>
-                    <?php endforeach; ?>
+                      <?php if (!empty($transdetail)) : ?>
+    <label for="exampleInputEmail1" class="form-label"><strong>Nama Pelanggan :</strong></label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $transdetail[0]['customers'] ?>" readonly>
+    </div>
+    <div class="ml-auto">
+        <p class="mb-1"><strong>ID Pesanan :</strong> <?= $transdetail[0]['transaction_id'] ?></p>
+        <p class="mb-0"><strong>Tanggal :</strong> <?= $transdetail[0]['created_at'] ?></p>
+<?php endif; ?>
+
                 </div>
             </div>
         </div>
@@ -356,10 +357,10 @@ function updateTotal() {
                 case 'Catering':
                     service = serviceEnum.Catering;
                     break;
-                case 'Non Tunai':
+                case 'Dine In':
                     service = serviceEnum.DineIn;
                     break;
-                case 'DP/Booking':
+                case 'Take Away':
                     service = serviceEnum.TakeAway;
                     break;
                 default:
@@ -409,7 +410,7 @@ function updateTotal() {
         // Attach click event handler to the checkout button
         $("#btn-checkout").click(function () {
             // Mengumpulkan data yang diperlukan
-            var id = <?= $index['id'] ?>;
+            var id = <?= $transdetail[0]['transaction_id'] ?>;
             var change = $("#changeAmount").text().replace(/Rp\. (\d+)\.00/, '$1');
             var receive = $("#uangTunai").val();
             var discount = $("#diskon").val();

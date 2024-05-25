@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\TransactionsModel;
 use App\Models\TransactionDetailsModel;
 use App\Models\ProdukModel;
+use Carbon\Carbon;
 
 class TransaksiController extends BaseController
 {
@@ -45,7 +46,10 @@ class TransaksiController extends BaseController
         $title['title'] = "Transaksi - Produk";
 
         // Fetch the transaction ID from POST data or adjust as needed
-        $transactionId = $this->request->getPost('transaction_id');
+        // $transactionId = $this->request->getPost('transaction_id');
+        $uri = service('uri'); // Load the URI class
+
+        $transactionId = $uri->getSegment(2); // Get the second segment of the URI, which is the transaction ID
 
         // Fetch necessary data for the view
         $produkModel = new ProdukModel();
@@ -53,6 +57,7 @@ class TransaksiController extends BaseController
 
         $transaksiModel = new TransactionsModel();
         $transaction = $transaksiModel->find($transactionId);
+        // $transactiondata = $transaksiModel->find($transactionId);
 
         // Calculate and update total price
         $totalPrice = $this->calculateAndUpdateTotalPrice($transactionId);
@@ -68,6 +73,8 @@ class TransaksiController extends BaseController
         $data['transaction'] = $transaction;
         $data['transactionDetails'] = $transactionDetails;
         $data['transdetail'] = $transdetail;
+
+        // var_dump($transdetail);exit;
 
         return view('pages/transaksi/payment', [
             'title' => $title,
@@ -448,11 +455,12 @@ class TransaksiController extends BaseController
             $transaksiModel = new TransactionsModel();
             $transaksi = $transaksiModel->getFilteredData($start_date, $end_date);
 
-            $data['transaksi'] = $transaksi;
-            $data['title'] = 'Transaksi - Produk'; // Replace with your actual title
+            // $data['transaksi'] = $transaksi;
+            // $title = $title['title'] = 'Transaksi - Produk'; // Replace with your actual title
+            $title['title'] = "Transaksi- Produk";
 
             // Load your view with the filtered data
-            return view('pages/transaksi/index', $data);
+            return view('pages/transaksi/index', ['title' => $title, 'transaksi' => $transaksi]);
         } else {
             // Either start or end date is empty, redirect back to the same page
             return view('pages/transaksi/index', [
@@ -470,8 +478,26 @@ class TransaksiController extends BaseController
     public function filter_proses()
     {
         $periode = $this->request->getPost('periode');
-        $transaksiModel = new TransactionsModel();
-        $transaksis = $transaksiModel->where('DATE(created_at)', $periode)->findAll();
+        $shift = $this->request->getPost('shift');
+        $firstShiftStart = '08:00:00';
+        $firstShiftEnd = '16:00:00';
+        $secondShiftStart = '16:01:00';
+        $secondShiftEnd = '22:00:00';
+
+        if ($shift == 1) {
+            $firstShiftStartNew = Carbon::createFromFormat('Y-m-d H:i:s', $periode . ' ' . $firstShiftStart);
+            $firstShiftEndNew = Carbon::createFromFormat('Y-m-d H:i:s', $periode . ' ' . $firstShiftEnd);
+
+            $transaksiModel = new TransactionsModel();
+            $transaksis = $transaksiModel->where('created_at >=', $firstShiftStartNew)->where('created_at <=', $firstShiftEndNew)->findAll();
+
+        } else {
+            $secondShiftStartNew = Carbon::createFromFormat('Y-m-d H:i:s', $periode . ' ' . $secondShiftStart);
+            $secondShiftEndNew = Carbon::createFromFormat('Y-m-d H:i:s', $periode . ' ' . $secondShiftEnd);
+
+            $transaksiModel = new TransactionsModel();
+            $transaksis = $transaksiModel->where('created_at >=', $secondShiftStartNew)->where('created_at <=', $secondShiftEndNew)->findAll();
+        }
 
         $id_detail_transaksis = [];
 
@@ -500,7 +526,6 @@ class TransaksiController extends BaseController
 
         $totalQuantityByCategory = [];
 
-        // Kelompokkan total kuantitas berdasarkan kategori produk
         foreach ($produkData as $produk) {
             $category = $produk['category'];
             $product_id = $produk['id'];

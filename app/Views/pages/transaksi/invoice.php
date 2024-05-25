@@ -144,7 +144,7 @@
                 </div>
             </td>
             <td><?= $detail['price'] ?></td>
-            <td><?= $detail['total_price'] ?></td>
+            <td><?= $detail['quantity'] * $detail['price'] ?></td>
             <td>
                 <a href="#" class="btn rounded-pill btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><i class="ti ti-trash"></i></a>
             </td>

@@ -38,6 +38,14 @@
                                     <input type="date" class="form-control" name="periode">
                                 </div>
                                 <div class="col">
+                                    <select class="form-select form-select-sm" aria-label="Default select example"
+                                        name="shift">
+                                        <option selected disabled>Pilih Shift</option>
+                                        <option value="1">Shift 1</option>
+                                        <option value="2">Shift 2</option>
+                                    </select>
+                                </div>
+                                <div class="col">
                                     <button class="btn btn-danger">Print PDF</button>
                                 </div>
                             </div>

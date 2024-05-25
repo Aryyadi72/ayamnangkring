@@ -117,7 +117,7 @@
                             </span>
                         </td>
                         <td data-exclude="true" class="text-center">
-                            <a href="<?= base_url('/produk-gallery-view/delete/' . $data['id']) ?>" class="btn rounded-pill btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                            <a href="<?= base_url('/produk-gallery-view/delete/' . $data['id']) ?>" class="btn rounded-pill btn-danger btn-sm">
                                 <i class="ti ti-trash"></i> Hapus
                             </a>
                             <a href="<?= base_url('/transaksi-produk/' . $data['id']) ?>" class="btn rounded-pill btn-secondary btn-sm">

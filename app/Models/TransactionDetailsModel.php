@@ -43,15 +43,39 @@ class TransactionDetailsModel extends Model
         return $this->belongsTo(TransactionsModel::class, 'transaction_id');
     }
 
-    public function getTransactionDetailsWithProductAndTransaction()
-    {
-        return $this->db->table('transaction_details')
-            ->select('transaction_details.id, transaction_details.transaction_id, transaction_details.product_id, transaction_details.quantity, transaction_details.price, transactions.customers, transactions.status, transactions.total_price, transactions.created_at, transactions.updated_at, products.name, products.qty, products.price as product_price, products.image, products.created_at as product_created_at, products.updated_at as product_updated_at')
-            ->join('transactions', 'transactions.id = transaction_details.transaction_id')
-            ->join('products', 'products.id = transaction_details.product_id')
-            ->get()
-            ->getResultArray();
-    }
+//     public function getTransactionDetailsWithProductAndTransaction()
+// {
+//     return $this->db->table('transaction_details')
+//         ->select('transaction_details.id, transaction_details.transaction_id, transaction_details.product_id, transaction_details.quantity, transaction_details.price, transactions.customers, transactions.status, transactions.total_price, transactions.created_at, transactions.updated_at, products.name, products.qty, products.price as product_price, products.image, products.created_at as product_created_at, products.updated_at as product_updated_at')
+//         ->join('transactions', 'transactions.id = transaction_details.transaction_id')
+//         ->join('products', 'products.id = transaction_details.product_id')
+//         ->where('transactions.id', function($builder) {
+//             $builder->select('id')
+//                     ->from('transactions')
+//                     ->orderBy('id', 'DESC')
+//                     ->limit(1);
+//         })
+//         ->get()
+//         ->getResultArray();
+// }
+
+public function getTransactionDetailsWithProductAndTransaction()
+{
+    // Load the URI class
+    $uri = service('uri');
+    // Get the transaction ID from the URI
+    $transactionId = $uri->getSegment(2);
+
+    return $this->db->table('transaction_details')
+        ->select('transaction_details.id, transaction_details.transaction_id, transaction_details.product_id, transaction_details.quantity, transaction_details.price, transactions.customers, transactions.status, transactions.total_price, transactions.created_at, transactions.updated_at, products.name, products.qty, products.price as product_price, products.image, products.created_at as product_created_at, products.updated_at as product_updated_at')
+        ->join('transactions', 'transactions.id = transaction_details.transaction_id')
+        ->join('products', 'products.id = transaction_details.product_id')
+        ->where('transactions.id', $transactionId)
+        ->get()
+        ->getResultArray();
+}
+
+
 
     // public function getFilteredDataPrint($start_periode, $end_periode)
     // {

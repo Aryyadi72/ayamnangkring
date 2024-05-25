@@ -154,12 +154,14 @@ th, td {
             <p>No</p>
             <p>Customer</p>
             <p>Jenis</p>
+            <p>Pembayaran</p>
             <p>Waktu</p>
         </div>
         <div>
             <p>:<?= $transaction['id'] ?? '' ?>/<?= date('Ymd/Hi') ?></p>
             <p>:<?= $transaction['customers'] ?? '' ?></p>
             <p>:<?= $transaction['service'] ?? '' ?></p>
+            <p>:<?= $transaction['payment_method'] ?? '' ?></p>
             <p>:<?= date('d M y H:i') ?></p>
         </div>
     </div>
@@ -178,7 +180,7 @@ th, td {
                 <tr>
                     <td><?= $detail['name'] ?></td>
                     <td><?= $detail['quantity'] ?></td>
-                    <td><?= number_format($detail['total_price'], 0, ',', '.') ?></td>
+                    <td><?= $detail['quantity'] * $detail['price'] ?></td>
                 </tr>
             <?php endforeach; ?>
             <!-- Akhir Data Produk -->
